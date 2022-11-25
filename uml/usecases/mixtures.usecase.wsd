@@ -1,0 +1,9 @@
+@startuml
+
+:Admin: -> (Criar mistura)
+:Admin: -> (Atualizar mistura)
+:Admin: -> (Excluir mistura)
+:Admin: -> (Consultar uma mistura)
+:Admin: -> (Consultar misturas)
+
+@enduml

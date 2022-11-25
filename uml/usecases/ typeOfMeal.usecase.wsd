@@ -1,0 +1,9 @@
+@startuml
+
+:Admin: -> (Criar tipo de refeição)
+:Admin: -> (Atualizar tipo de refeição)
+:Admin: -> (Excluir tipo de refeição)
+:Admin: -> (Consultar um tipo de refeição)
+:Admin: -> (Consultar tipos de refeição)
+
+@enduml

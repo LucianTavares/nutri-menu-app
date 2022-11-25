@@ -1,0 +1,9 @@
+@startuml
+
+:Admin: -> (Criar menu do dia)
+:Admin: -> (Atualizar menu do dia)
+:Admin: -> (Excluir menu do dia)
+:Admin: -> (Consultar menu do dia)
+:Admin: -> (Consultar menu da semana)
+
+@enduml

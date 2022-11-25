@@ -1,0 +1,56 @@
+@startuml
+
+entity TypeOfMeal
+
+TypeOfMeal : uuid id
+TypeOfMeal : string type
+TypeOfMeal : boolean is_active
+TypeOfMeal : date create_at
+
+TypeOfMeal : create()
+TypeOfMeal : update()
+TypeOfMeal : activate()
+TypeOfMeal : deactivate()
+TypeOfMeal : delete()
+
+entity DayOfTheWeek
+
+DayOfTheWeek : uuid id
+DayOfTheWeek : string day
+DayOfTheWeek : boolean is_active
+DayOfTheWeek : date create_at
+
+DayOfTheWeek : create()
+DayOfTheWeek : update()
+DayOfTheWeek : activate()
+DayOfTheWeek : deactivate()
+DayOfTheWeek : delete()
+
+entity Mixtures
+
+Mixtures : uuid id
+Mixtures : string name
+Mixtures : boolean can_freeze
+Mixtures : boolean is_active
+Mixtures : date create_at
+
+Mixtures : create()
+Mixtures : update()
+Mixtures : activate()
+Mixtures : deactivate()
+Mixtures : delete()
+
+entity TodayMenu
+
+TodayMenu : uuid id
+TodayMenu : boolean its_frozen
+TodayMenu : boolean is_active
+TodayMenu : date create_at
+
+TodayMenu : create()
+TodayMenu : update()
+TodayMenu : activate()
+TodayMenu : deactivate()
+TodayMenu : delete()
+
+@enduml

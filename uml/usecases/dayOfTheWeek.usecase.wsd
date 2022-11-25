@@ -1,0 +1,9 @@
+@startuml
+
+:Admin: -> (Criar dia da semana)
+:Admin: -> (Atualizar dia da semana)
+:Admin: -> (Excluir dia da semana)
+:Admin: -> (Consutar um dia da semana)
+:Admin: -> (Consultar semana)
+
+@enduml
