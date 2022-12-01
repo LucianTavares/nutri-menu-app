@@ -1,9 +1,9 @@
 export default class User {
 
-  _id: string;
-  _name: string;
-  _email: string;
-  _active: boolean = false;
+  private _id: string;
+  private _name: string;
+  private _email: string;
+  private _active: boolean = false;
 
   constructor(id: string, name: string, email: string) {
     this._id = id;
@@ -12,9 +12,17 @@ export default class User {
     this.validate();
   }
 
+  get name(): string {
+    return this._name;
+  }
+
+  get email(): string {
+    return this._email;
+  }
+
   changeName(name: string) {
     this._name = name;
-    this.validate()
+    this.validate();
   }
 
   validate() {
@@ -24,10 +32,14 @@ export default class User {
     if (this._name.length === 0) {
       throw new Error("Name is required");
     }
+    if (this._email.length === 0) {
+      throw new Error("Email is required")
+    }
   }
 
   changeEmail(email: string) {
     this._email = email;
+    this.validate();
   }
 
   activate() {
@@ -36,6 +48,10 @@ export default class User {
 
   deactivate() {
     this._active = false;
+  }
+
+  isActive(): boolean {
+    return this._active;
   }
 
 }

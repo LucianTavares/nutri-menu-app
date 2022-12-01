@@ -11,6 +11,10 @@ export default class DayOfTheWeek {
     this.validate();
   }
 
+  get day(): string {
+    return this._day;
+  }
+
   changeDay(day: string) {
     this._day = day;
   }
@@ -30,6 +34,10 @@ export default class DayOfTheWeek {
 
   deactivate() {
     this._active = false;
+  }
+
+  isActive(): boolean {
+    return this._active; 
   }
 
 }

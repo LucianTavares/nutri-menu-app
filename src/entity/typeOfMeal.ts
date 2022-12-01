@@ -1,16 +1,21 @@
+import DayOfTheWeek from "./dayOfTheWeek";
+
 export default class TypeOfMeal {
 
   _id: string;
   _type: string;
-  _dayOfTheWeekId: string;
+  _dayOfTheWeek!: DayOfTheWeek;
   _active: boolean = false;
 
-  constructor(id: string, type: string, dayOfTheWeekId: string) {
+  constructor(id: string, type: string) {
 
     this._id = id;
     this._type = type;
-    this._dayOfTheWeekId = dayOfTheWeekId;
     this.validate();
+  }
+
+  get type(): string {
+    return this._type;
   }
 
   validate() {
@@ -20,24 +25,32 @@ export default class TypeOfMeal {
     if (this._type.length === 0) {
       throw new Error("Type is required")
     }
-    if (this._dayOfTheWeekId.length === 0) {
-      throw new Error("Day of the week is required")
-    }
   }
 
   changeType(type: string) {
     this._type = type;
   }
 
-  changeDayOfTheWeek(dayOfTheWeekId: string) {
-    this._dayOfTheWeekId = dayOfTheWeekId;
-  }
+  // changeDayOfTheWeek(dayOfTheWeek: DayOfTheWeek) {
+  //   this._dayOfTheWeek = dayOfTheWeek;
+  // }
 
   activate() {
+    if (this._dayOfTheWeek === undefined) {
+      throw new Error("Day of the week is mandatory to activate a type of meal")
+    }
     this._active = true;  
   }
 
   deactivate() {
     this._active = false;
+  }
+
+  isActive(): boolean {
+    return this._active;
+  }
+
+  set DayOfTheWeek(dayOfTheWeek: DayOfTheWeek) {
+    this._dayOfTheWeek = dayOfTheWeek;
   }
 }
