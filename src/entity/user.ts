@@ -25,6 +25,11 @@ export default class User {
     this.validate();
   }
 
+  changeEmail(email: string) {
+    this._email = email;
+    this.validate();
+  }
+
   validate() {
     if (this._id.length === 0) {
       throw new Error("Id is required");
@@ -35,11 +40,6 @@ export default class User {
     if (this._email.length === 0) {
       throw new Error("Email is required")
     }
-  }
-
-  changeEmail(email: string) {
-    this._email = email;
-    this.validate();
   }
 
   activate() {

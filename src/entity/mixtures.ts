@@ -5,12 +5,15 @@ export default class Mixtures {
   _canFreeze: boolean = false;
   _active: boolean = false;
 
-  constructor(id: string, mixture: string, canFreeze: boolean) {
+  constructor(id: string, mixture: string) {
 
     this._id = id;
     this._mixture = mixture;
-    this._canFreeze = canFreeze;
     this.validate();
+  }
+
+  get mixture(): string {
+    return this._mixture;
   }
 
   changeMixture(mixture: string) {
@@ -27,11 +30,15 @@ export default class Mixtures {
   }
 
   canFreeze() {
-    this._canFreeze = true;
+    this._canFreeze = true
   }
 
   cannotFreeze() {
     this._canFreeze = false;
+  }
+
+  isFreeze(): boolean {
+    return this._canFreeze
   }
 
   activate() {
@@ -40,6 +47,10 @@ export default class Mixtures {
 
   deactivate() {
     this._active = false;
+  }
+
+  isActive(): boolean {
+    return this._active
   }
 
 }

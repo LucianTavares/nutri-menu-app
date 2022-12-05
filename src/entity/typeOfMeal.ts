@@ -31,15 +31,11 @@ export default class TypeOfMeal {
     this._type = type;
   }
 
-  // changeDayOfTheWeek(dayOfTheWeek: DayOfTheWeek) {
-  //   this._dayOfTheWeek = dayOfTheWeek;
-  // }
-
   activate() {
     if (this._dayOfTheWeek === undefined) {
       throw new Error("Day of the week is mandatory to activate a type of meal")
     }
-    this._active = true;  
+    this._active = true;
   }
 
   deactivate() {
