@@ -4,7 +4,7 @@ import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
   tableName: "type_of_meal",
   timestamps: false,
 })
-export default class TypeOfMeal extends Model {
+export default class TypeOfMealModel extends Model {
 
   @PrimaryKey
   @Column
@@ -12,4 +12,7 @@ export default class TypeOfMeal extends Model {
 
   @Column({allowNull: false})
   declare type: string;
+
+  @Column({allowNull: false})
+  declare day: string;
 }

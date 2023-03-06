@@ -1,4 +1,4 @@
-import DayOfTheWeek from "./dayOfTheWeek"
+import DayOfTheWeek from "./value-object/dayOfTheWeek"
 import TypeOfMeal from "./typeOfMeal"
 
 describe("Type of meal unit tests", () => {
@@ -24,7 +24,7 @@ describe("Type of meal unit tests", () => {
 
   it("should activate type", () => {
     const type = new TypeOfMeal("1", "Café")
-    const day = new DayOfTheWeek("1", "Segunda-Feira")
+    const day = new DayOfTheWeek("Segunda-Feira")
     type.DayOfTheWeek = day
 
     type.activate()

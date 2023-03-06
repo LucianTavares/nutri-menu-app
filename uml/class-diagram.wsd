@@ -13,19 +13,6 @@ TypeOfMeal : activate()
 TypeOfMeal : deactivate()
 TypeOfMeal : delete()
 
-entity DayOfTheWeek
-
-DayOfTheWeek : uuid id
-DayOfTheWeek : string day
-DayOfTheWeek : boolean is_active
-DayOfTheWeek : date create_at
-
-DayOfTheWeek : create()
-DayOfTheWeek : update()
-DayOfTheWeek : activate()
-DayOfTheWeek : deactivate()
-DayOfTheWeek : delete()
-
 entity Mixtures
 
 Mixtures : uuid id

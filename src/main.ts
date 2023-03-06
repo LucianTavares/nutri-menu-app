@@ -1,4 +1,4 @@
-import DayOfTheWeek from "./domain/entity/dayOfTheWeek";
+import DayOfTheWeek from "./domain/entity/value-object/dayOfTheWeek";
 import TodayMenu from "./domain/entity/todayMenu";
 import TypeOfMeal from "./domain/entity/typeOfMeal";
 import User from "./domain/entity/user";

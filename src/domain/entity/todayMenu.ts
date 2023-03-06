@@ -1,4 +1,4 @@
-import DayOfTheWeek from "./dayOfTheWeek";
+import DayOfTheWeek from "./value-object/dayOfTheWeek";
 import Mixtures from "./mixtures";
 
 export default class TodayMenu {

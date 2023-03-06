@@ -1,21 +1,28 @@
-import DayOfTheWeek from "./dayOfTheWeek";
+import DayOfTheWeek from "./value-object/dayOfTheWeek";
 
 export default class TypeOfMeal {
 
-  _id: string;
-  _type: string;
-  _dayOfTheWeek!: DayOfTheWeek;
-  _active: boolean = false;
+  private _id: string;
+  private _type: string;
+  private _dayOfTheWeek!: DayOfTheWeek;
+  private _active: boolean = false;
 
   constructor(id: string, type: string) {
-
     this._id = id;
     this._type = type;
     this.validate();
   }
 
+  get id(): string {
+    return this._id
+  }
+
   get type(): string {
     return this._type;
+  }
+
+  get DayOfTheWeek(): DayOfTheWeek {
+    return this._dayOfTheWeek
   }
 
   validate() {
