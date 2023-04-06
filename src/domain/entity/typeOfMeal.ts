@@ -38,6 +38,10 @@ export default class TypeOfMeal {
     this._type = type;
   }
 
+  changeDay(day: DayOfTheWeek) {
+    this._dayOfTheWeek = day
+  }
+
   activate() {
     if (this._dayOfTheWeek === undefined) {
       throw new Error("Day of the week is mandatory to activate a type of meal")

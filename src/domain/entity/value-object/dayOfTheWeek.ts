@@ -1,7 +1,6 @@
 export default class DayOfTheWeek {
 
   _day: string;
-  _active: boolean = false;
 
   constructor(day: string) {
 

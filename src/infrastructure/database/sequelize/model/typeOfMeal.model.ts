@@ -15,4 +15,7 @@ export default class TypeOfMealModel extends Model {
 
   @Column({allowNull: false})
   declare day: string;
+
+  @Column({ allowNull: false })
+  declare active: boolean;
 }
