@@ -80,7 +80,7 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
       }
       return types
     })
-    
+
     return typesOfMeal
   }
 }

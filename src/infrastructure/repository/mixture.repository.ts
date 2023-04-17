@@ -15,19 +15,71 @@ export default class MixturesRepository implements MixturesRepositoryInterface {
   }
 
   async update(entity: Mixtures): Promise<void> {
-    throw new Error("Method not implemented.");
+
+    await MixturesModel.update(
+      {
+        mixture: entity.mixture
+      },
+      {
+        where: {
+          id: entity._id
+        }
+      }
+    )
   }
 
   async delete(id: string): Promise<void> {
-    throw new Error("Method not implemented.");
+
+    await MixturesModel.destroy(
+      {
+        where: { id: id }
+      }
+    )
   }
 
   async find(id: string): Promise<Mixtures> {
-    throw new Error("Method not implemented.");
+
+    const mixture = await MixturesModel.findOne(
+      {
+        where: { id: id }
+      }
+    )
+
+    return new Mixtures(
+      mixture.id,
+      mixture.mixture
+    )
+  }
+
+  async findByMixture(mixture: string): Promise<Mixtures> {
+
+    const mixtureModel = await MixturesModel.findOne(
+      {
+        where: { mixture: mixture }
+      }
+    )
+
+    return new Mixtures(
+      mixtureModel.id,
+      mixtureModel.mixture
+    )
   }
 
   async findAll(): Promise<Mixtures[]> {
-    throw new Error("Method not implemented.");
-  }
 
+    const mixturesModel = await MixturesModel.findAll()
+
+    const mixtures = mixturesModel.map((mixtureModel) => {
+      let mixture = new Mixtures(
+        mixtureModel.id,
+        mixtureModel.mixture
+      )
+      if (mixtureModel.active) {
+        mixture.activate()
+      }
+      return mixture
+    })
+
+    return mixtures
+  }
 }

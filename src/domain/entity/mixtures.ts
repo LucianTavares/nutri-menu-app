@@ -9,6 +9,8 @@ export default class Mixtures {
 
     this._id = id;
     this._mixture = mixture;
+    this.isFreeze()
+    this.isActive()
     this.validate();
   }
 
