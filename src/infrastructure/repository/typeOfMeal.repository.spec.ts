@@ -3,7 +3,6 @@ import TypeOfMealModel from "../database/sequelize/model/typeOfMeal.model";
 import TypeOfMeal from "../../domain/entity/typeOfMeal";
 import TypeOfMealRepository from "./typeOfMeal.repository";
 import DayOfTheWeek from "../../domain/entity/value-object/dayOfTheWeek";
-import { join } from "path"
 
 describe("Type of meal repository tests", () => {
 

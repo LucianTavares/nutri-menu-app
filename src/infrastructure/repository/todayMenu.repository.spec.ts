@@ -1,7 +1,5 @@
 import { Sequelize } from "sequelize-typescript"
-import MixturesRepository from "./mixture.repository"
 import Mixtures from "../../domain/entity/mixtures"
-import TypeOfMealRepository from "./typeOfMeal.repository"
 import TypeOfMeal from "../../domain/entity/typeOfMeal"
 import DayOfTheWeek from "../../domain/entity/value-object/dayOfTheWeek"
 import TodayMenu from "../../domain/entity/todayMenu"

@@ -7,7 +7,7 @@ export default class MixturesRepository implements MixturesRepositoryInterface {
   async create(entity: Mixtures): Promise<void> {
 
     await MixturesModel.create({
-      id: entity._id,
+      id: entity.id,
       mixture: entity.mixture,
       can_freeze: entity.isFreeze(),
       active: entity.isActive()
@@ -22,7 +22,7 @@ export default class MixturesRepository implements MixturesRepositoryInterface {
       },
       {
         where: {
-          id: entity._id
+          id: entity.id
         }
       }
     )

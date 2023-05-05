@@ -2,7 +2,6 @@ import { Sequelize } from "sequelize-typescript"
 import MixturesModel from "../database/sequelize/model/mixtures.model"
 import Mixtures from "../../domain/entity/mixtures"
 import MixturesRepository from "./mixture.repository"
-import TodayMenuModel from "../database/sequelize/model/todayMenu.model"
 
 describe("Mixtures repository tests", () => {
 
@@ -98,7 +97,7 @@ describe("Mixtures repository tests", () => {
       active: true
     })
 
-    const result = await mixturesRepository.delete(mixture._id)
+    const result = await mixturesRepository.delete(mixture.id)
 
     expect(result).toBeUndefined()
   })
@@ -118,7 +117,7 @@ describe("Mixtures repository tests", () => {
     const foundMixture = await mixturesRepository.find("1")
 
     expect(mixtureModel.toJSON()).toStrictEqual({
-      id: foundMixture._id,
+      id: foundMixture.id,
       mixture: foundMixture.mixture,
       can_freeze: mixture.isFreeze(),
       active: mixture.isActive()
@@ -140,7 +139,7 @@ describe("Mixtures repository tests", () => {
     const foundMixture = await mixturesRepository.findByMixture("Pão")
 
     expect(mixtureModel.toJSON()).toStrictEqual({
-      id: foundMixture._id,
+      id: foundMixture.id,
       mixture: foundMixture.mixture,
       can_freeze: mixture.isFreeze(),
       active: mixture.isActive()
