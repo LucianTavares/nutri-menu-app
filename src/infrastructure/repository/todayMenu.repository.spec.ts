@@ -52,8 +52,6 @@ describe("Today Menu repository tests", () => {
       include: ["mixtures"]
     })
 
-    console.log(todayMenuModel.mixtures)
-
     expect(todayMenuModel).toBeDefined()
     expect(todayMenuModel.id).toBe(todayMenu.id)
     expect(todayMenuModel.mixtures[0].id).toBe(todayMenu.mixtures[0].id)
