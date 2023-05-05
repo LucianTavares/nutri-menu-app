@@ -1,9 +1,9 @@
 export default class Mixtures {
 
-  _id: string;
-  _mixture: string;
-  _canFreeze: boolean = false;
-  _active: boolean = false;
+  private _id: string;
+  private _mixture: string;
+  private _canFreeze: boolean = false;
+  private _active: boolean = false;
 
   constructor(id: string, mixture: string) {
 
@@ -12,6 +12,10 @@ export default class Mixtures {
     this.isFreeze()
     this.isActive()
     this.validate();
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   get mixture(): string {

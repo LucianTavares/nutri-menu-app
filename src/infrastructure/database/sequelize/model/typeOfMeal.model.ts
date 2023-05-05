@@ -1,4 +1,5 @@
-import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import TodayMenuModel from "./todayMenu.model";
 
 @Table({
   tableName: "type_of_meal",
@@ -12,6 +13,10 @@ export default class TypeOfMealModel extends Model {
 
   @Column({allowNull: false})
   declare type: string;
+
+  // @ForeignKey(() => TodayMenuModel)
+  // @Column({allowNull: false, field: "today_menu_id"})
+  // declare today_menu_id: string
 
   @Column({allowNull: false})
   declare day: string;

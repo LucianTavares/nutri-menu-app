@@ -1,4 +1,5 @@
-import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table} from "sequelize-typescript";
+import TodayMenuModel from "./todayMenu.model";
 
 @Table({
   tableName: "mixtures",

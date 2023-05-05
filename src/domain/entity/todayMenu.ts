@@ -3,12 +3,12 @@ import Mixtures from "./mixtures";
 
 export default class TodayMenu {
 
-  _id: string;
-  _mixtures: Mixtures[];
-  _dayOfTheWeek!: DayOfTheWeek;
-  _typeOfMealId: string;
-  _itsFrozen: boolean = false;
-  _active: boolean = false;
+  private _id: string;
+  private _mixtures: Mixtures[];
+  // _dayOfTheWeek!: DayOfTheWeek;
+  private _typeOfMealId: string;
+  private _itsFrozen: boolean = false;
+  private _active: boolean = false;
 
   constructor(id: string, mixtures: Mixtures[], typeOfMealId: string) {
     this._id = id;
@@ -27,6 +27,18 @@ export default class TodayMenu {
     if (this._typeOfMealId.length === 0) {
       throw new Error("Type of meal id is required")
     }
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  get mixtures(): Mixtures[] {
+    return this._mixtures;
+  }
+
+  get typeOfMealId(): string {
+    return this._typeOfMealId;
   }
 
   freeze() {

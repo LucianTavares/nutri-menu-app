@@ -2,6 +2,7 @@ import { Sequelize } from "sequelize-typescript"
 import MixturesModel from "../database/sequelize/model/mixtures.model"
 import Mixtures from "../../domain/entity/mixtures"
 import MixturesRepository from "./mixture.repository"
+import TodayMenuModel from "../database/sequelize/model/todayMenu.model"
 
 describe("Mixtures repository tests", () => {
 
@@ -166,6 +167,5 @@ describe("Mixtures repository tests", () => {
     expect(foundMixtures).toHaveLength(2)
     expect(foundMixtures).toContainEqual(mixture)
     expect(foundMixtures).toContainEqual(mixture2)
-
   })
 })
