@@ -1,14 +1,18 @@
+import TodayMenu from "./todayMenu";
+
 export default class User {
 
   private _id: string;
   private _name: string;
   private _email: string;
+  private _todayMenu: TodayMenu[];
   private _active: boolean = false;
 
-  constructor(id: string, name: string, email: string) {
+  constructor(id: string, name: string, email: string, todayMenu: TodayMenu[]) {
     this._id = id;
     this._name = name;
     this._email = email;
+    this._todayMenu = todayMenu;
     this.validate();
   }
 
@@ -18,6 +22,10 @@ export default class User {
 
   get email(): string {
     return this._email;
+  }
+
+  get todayMenu(): TodayMenu[] {
+    return this._todayMenu;
   }
 
   changeName(name: string) {
@@ -39,6 +47,9 @@ export default class User {
     }
     if (this._email.length === 0) {
       throw new Error("Email is required")
+    }
+    if (this._todayMenu.length === 0) {
+      throw new Error("Today Menu is required")
     }
   }
 
