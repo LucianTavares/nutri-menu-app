@@ -7,6 +7,6 @@ services:
       context: .
     ports:
       - 3000:3000
-    entrypoint: sh -c "npm install && npm run dev"
+    entrypoint: ./start.sh
     volumes:
       - ./:/usr/src/app
