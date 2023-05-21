@@ -13,4 +13,4 @@ jobs:
         with: 
           node-version: 18
       - run: docker compose run -u root -d -p 3000:3000 app
-      - run: docker compose exec -T app bash -c "npm test" 
+      - run: docker compose exec -T app bash -c "npm install && npm test" 
