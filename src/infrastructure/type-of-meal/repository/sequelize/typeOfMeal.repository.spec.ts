@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize-typescript"
-import TypeOfMealModel from "../database/sequelize/model/typeOfMeal.model";
-import TypeOfMeal from "../../domain/entity/typeOfMeal";
 import TypeOfMealRepository from "./typeOfMeal.repository";
-import DayOfTheWeek from "../../domain/entity/value-object/dayOfTheWeek";
+import TypeOfMealModel from "./typeOfMeal.model";
+import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal";
+import DayOfTheWeek from "../../../../domain/today-menu/entity/value-object/dayOfTheWeek";
 
 describe("Type of meal repository tests", () => {
 

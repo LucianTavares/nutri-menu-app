@@ -1,4 +1,4 @@
-import Mixtures from "./mixtures"
+import Mixtures from "../../mixture/entity/mixtures"
 import TodayMenu from "./todayMenu"
 
 describe("Today menu unit tests", () => {

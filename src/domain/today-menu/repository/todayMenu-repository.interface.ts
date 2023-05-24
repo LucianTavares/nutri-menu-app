@@ -1,4 +1,5 @@
+
+import RepositoryInterface from "../../@shared/repository/repository-interface";
 import TodayMenu from "../entity/todayMenu";
-import RepositoryInterface from "./repository-interface";
 
 export default interface TodayMenuRepositoryInterface extends RepositoryInterface<TodayMenu> {}

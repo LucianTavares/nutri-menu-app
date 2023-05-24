@@ -1,8 +1,9 @@
-import Mixtures from "./mixtures";
-import TodayMenu from "./todayMenu";
-import TypeOfMeal from "./typeOfMeal";
+import Mixtures from "../../mixture/entity/mixtures";
+import TodayMenu from "../../today-menu/entity/todayMenu";
+import DayOfTheWeek from "../../today-menu/entity/value-object/dayOfTheWeek";
+import TypeOfMeal from "../../type-of-meal/entity/typeOfMeal";
 import User from "./user";
-import DayOfTheWeek from "./value-object/dayOfTheWeek";
+
 
 describe("User unit tests", () => {
 

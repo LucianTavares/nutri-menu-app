@@ -1,7 +1,8 @@
-import TypeOfMeal from "../../domain/entity/typeOfMeal";
-import DayOfTheWeek from "../../domain/entity/value-object/dayOfTheWeek";
-import TypeOfMealRepositoryInterface from "../../domain/repository/typeOfMeal-repository.inteface";
-import TypeOfMealModel from "../database/sequelize/model/typeOfMeal.model";
+
+import DayOfTheWeek from "../../../../domain/today-menu/entity/value-object/dayOfTheWeek";
+import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal";
+import TypeOfMealRepositoryInterface from "../../../../domain/type-of-meal/repository/typeOfMeal-repository.interface";
+import TypeOfMealModel from "./typeOfMeal.model";
 
 export default class TypeOfMealRepository implements TypeOfMealRepositoryInterface {
 
