@@ -1,12 +1,12 @@
 import { Sequelize } from "sequelize-typescript"
-import Mixtures from "../../domain/entity/mixtures"
-import TypeOfMeal from "../../domain/entity/typeOfMeal"
-import DayOfTheWeek from "../../domain/entity/value-object/dayOfTheWeek"
-import TodayMenu from "../../domain/entity/todayMenu"
 import TodayMenuRepository from "./todayMenu.repository"
-import MixturesModel from "../database/sequelize/model/mixtures.model"
-import TypeOfMealModel from "../database/sequelize/model/typeOfMeal.model"
-import TodayMenuModel from "../database/sequelize/model/todayMenu.model"
+import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model"
+import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model"
+import TodayMenuModel from "./todayMenu.model"
+import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal"
+import DayOfTheWeek from "../../../../domain/today-menu/entity/value-object/dayOfTheWeek"
+import Mixtures from "../../../../domain/mixture/entity/mixtures"
+import TodayMenu from "../../../../domain/today-menu/entity/todayMenu"
 
 describe("Today Menu repository tests", () => {
 

@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize-typescript"
-import MixturesModel from "../database/sequelize/model/mixtures.model"
-import Mixtures from "../../domain/entity/mixtures"
 import MixturesRepository from "./mixture.repository"
+import MixturesModel from "./mixtures.model"
+import Mixtures from "../../../../domain/mixture/entity/mixtures"
 
 describe("Mixtures repository tests", () => {
 

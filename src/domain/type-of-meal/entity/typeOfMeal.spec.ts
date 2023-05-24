@@ -1,4 +1,4 @@
-import DayOfTheWeek from "./value-object/dayOfTheWeek"
+import DayOfTheWeek from "../../today-menu/entity/value-object/dayOfTheWeek"
 import TypeOfMeal from "./typeOfMeal"
 
 describe("Type of meal unit tests", () => {

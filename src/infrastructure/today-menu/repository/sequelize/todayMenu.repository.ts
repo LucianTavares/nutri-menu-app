@@ -1,6 +1,7 @@
-import TodayMenu from "../../domain/entity/todayMenu";
-import TodayMenuRepositoryInterface from "../../domain/repository/todayMenu-repository.interface";
-import TodayMenuModel from "../database/sequelize/model/todayMenu.model";
+import TodayMenu from "../../../../domain/today-menu/entity/todayMenu";
+import TodayMenuRepositoryInterface from "../../../../domain/today-menu/repository/todayMenu-repository.interface";
+import TodayMenuModel from "./todayMenu.model";
+
 
 export default class TodayMenuRepository implements TodayMenuRepositoryInterface {
 

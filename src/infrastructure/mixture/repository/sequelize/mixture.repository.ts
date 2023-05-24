@@ -1,6 +1,7 @@
-import Mixtures from "../../domain/entity/mixtures";
-import MixturesRepositoryInterface from "../../domain/repository/mixtures-repository.interface";
-import MixturesModel from "../database/sequelize/model/mixtures.model";
+
+import Mixtures from "../../../../domain/mixture/entity/mixtures";
+import MixturesRepositoryInterface from "../../../../domain/mixture/repository/mixtures-repository.interface";
+import MixturesModel from "./mixtures.model";
 
 export default class MixturesRepository implements MixturesRepositoryInterface {
 

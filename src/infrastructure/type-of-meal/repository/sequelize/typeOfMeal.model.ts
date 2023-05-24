@@ -1,5 +1,5 @@
 import { Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
-import TodayMenuModel from "./todayMenu.model";
+import TodayMenuModel from "../../../today-menu/repository/sequelize/todayMenu.model";
 
 @Table({
   tableName: "type_of_meal",

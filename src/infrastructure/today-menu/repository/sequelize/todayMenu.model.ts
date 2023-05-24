@@ -1,6 +1,6 @@
 import { Column, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
-import MixturesModel from "./mixtures.model";
-import TypeOfMealModel from "./typeOfMeal.model";
+import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model";
+import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model";
 
 @Table({
   tableName: "today_menu",
