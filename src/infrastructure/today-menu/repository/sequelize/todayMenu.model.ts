@@ -12,16 +12,19 @@ export default class TodayMenuModel extends Model {
   @Column
   declare id: string
 
-  @HasMany(() => MixturesModel, { foreignKey: "mixture_id", as: "mixtures" })
-  declare mixtures: Awaited<MixturesModel[]>
-
-  @HasOne(() => TypeOfMealModel, { foreignKey: "type_of_meal_id", as: "type_of_meal" })
   @Column({ allowNull: false })
-  declare type_of_meal_id: string
+  declare its_frozen: boolean;
 
   @Column({ allowNull: false })
-  declare its_frozen: boolean
+  declare active: boolean;
 
-  @Column({ allowNull: false })
-  declare active: boolean
+  @HasMany(() => MixturesModel, {
+    onDelete: 'CASCADE'
+  })
+  declare mixtures: MixturesModel[];
+
+  @HasMany(() => TypeOfMealModel, {
+    onDelete: 'CASCADE'
+  })
+  declare type_of_meal: TypeOfMealModel[];
 }

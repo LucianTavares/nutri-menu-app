@@ -1,86 +1,86 @@
 
-import Mixtures from "../../../../domain/mixture/entity/mixtures";
-import MixturesRepositoryInterface from "../../../../domain/mixture/repository/mixtures-repository.interface";
-import MixturesModel from "./mixtures.model";
+// import Mixtures from "../../../../domain/mixture/entity/mixtures";
+// import MixturesRepositoryInterface from "../../../../domain/mixture/repository/mixtures-repository.interface";
+// import MixturesModel from "./mixtures.model";
 
-export default class MixturesRepository implements MixturesRepositoryInterface {
+// export default class MixturesRepository implements MixturesRepositoryInterface {
 
-  async create(entity: Mixtures): Promise<void> {
+//   async create(entity: Mixtures): Promise<void> {
 
-    await MixturesModel.create({
-      id: entity.id,
-      mixture: entity.mixture,
-      can_freeze: entity.isFreeze(),
-      active: entity.isActive()
-    })
-  }
+//     await MixturesModel.create({
+//       id: entity.id,
+//       mixture: entity.mixture,
+//       can_freeze: entity.isFreeze(),
+//       active: entity.isActive()
+//     })
+//   }
 
-  async update(entity: Mixtures): Promise<void> {
+//   async update(entity: Mixtures): Promise<void> {
 
-    await MixturesModel.update(
-      {
-        mixture: entity.mixture
-      },
-      {
-        where: {
-          id: entity.id
-        }
-      }
-    )
-  }
+//     await MixturesModel.update(
+//       {
+//         mixture: entity.mixture
+//       },
+//       {
+//         where: {
+//           id: entity.id
+//         }
+//       }
+//     )
+//   }
 
-  async delete(id: string): Promise<void> {
+//   async delete(id: string): Promise<void> {
 
-    await MixturesModel.destroy(
-      {
-        where: { id: id }
-      }
-    )
-  }
+//     await MixturesModel.destroy(
+//       {
+//         where: { id: id }
+//       }
+//     )
+//   }
 
-  async find(id: string): Promise<Mixtures> {
+//   async find(id: string): Promise<Mixtures> {
 
-    const mixture = await MixturesModel.findOne(
-      {
-        where: { id: id }
-      }
-    )
+//     const mixture = await MixturesModel.findOne(
+//       {
+//         where: { id: id }
+//       }
+//     )
 
-    return new Mixtures(
-      mixture.id,
-      mixture.mixture
-    )
-  }
+//     return new Mixtures(
+//       mixture.id,
+//       mixture.mixture
+//     )
+//   }
 
-  async findByMixture(mixture: string): Promise<Mixtures> {
+//   async findByMixture(mixture: string): Promise<Mixtures> {
 
-    const mixtureModel = await MixturesModel.findOne(
-      {
-        where: { mixture: mixture }
-      }
-    )
+//     const mixtureModel = await MixturesModel.findOne(
+//       {
+//         where: { mixture: mixture }
+//       }
+//     )
 
-    return new Mixtures(
-      mixtureModel.id,
-      mixtureModel.mixture
-    )
-  }
+//     return new Mixtures(
+//       mixtureModel.id,
+//       mixtureModel.mixture
+//     )
+//   }
 
-  async findAll(): Promise<Mixtures[]> {
+//   async findAll(): Promise<Mixtures[]> {
 
-    const mixturesModel = await MixturesModel.findAll()
+//     const mixturesModel = await MixturesModel.findAll()
 
-    const mixtures = mixturesModel.map((mixtureModel) => {
-      let mixture = new Mixtures(
-        mixtureModel.id,
-        mixtureModel.mixture
-      )
-      if (mixtureModel.active) {
-        mixture.activate()
-      }
-      return mixture
-    })
+//     const mixtures = mixturesModel.map((mixtureModel) => {
+//       let mixture = new Mixtures(
+//         mixtureModel.id,
+//         mixtureModel.mixture
+//       )
+//       if (mixtureModel.active) {
+//         mixture.activate()
+//       }
+//       return mixture
+//     })
 
-    return mixtures
-  }
-}
+//     return mixtures
+//   }
+// }

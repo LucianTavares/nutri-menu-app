@@ -1,4 +1,4 @@
-@startuml
+@startuml typeOfMealUseCase
 
 :Admin: -> (Criar tipo de refeição)
 :Admin: -> (Atualizar tipo de refeição)

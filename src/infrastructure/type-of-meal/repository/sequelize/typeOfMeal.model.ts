@@ -1,4 +1,4 @@
-import { Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
 import TodayMenuModel from "../../../today-menu/repository/sequelize/todayMenu.model";
 
 @Table({
@@ -11,16 +11,21 @@ export default class TypeOfMealModel extends Model {
   @Column
   declare id: string;
 
-  @Column({allowNull: false})
+  @Column({ allowNull: false })
   declare type: string;
 
-  // @ForeignKey(() => TodayMenuModel)
-  // @Column({allowNull: false, field: "today_menu_id"})
-  // declare today_menu_id: string
-
-  @Column({allowNull: false})
+  @Column({ allowNull: false })
   declare day: string;
 
   @Column({ allowNull: false })
   declare active: boolean;
+
+  @ForeignKey(() => TodayMenuModel)
+  @Column({ allowNull: false })
+  declare today_menu_id: string;
+
+  @BelongsTo(() => TodayMenuModel, {
+    onDelete: 'CASCADE'
+  })
+  declare today_menu: Awaited<TodayMenuModel>
 }

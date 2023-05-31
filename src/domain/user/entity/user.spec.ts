@@ -13,7 +13,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("", "Lucian", "lucian@fs.com.br", [todayMenu]);
 
     }).toThrowError("Id is required");
@@ -25,7 +25,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("1", "", "lucian@fs.com.br", [todayMenu]);
 
     }).toThrowError("Name is required");
@@ -37,7 +37,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("1", "Lucian", "", [todayMenu]);
 
     }).toThrowError("Email is required");
@@ -58,7 +58,7 @@ describe("User unit tests", () => {
     const day = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = day
     const mixture = new Mixtures("1", "Frango");
-    const todayMenu = new TodayMenu("1", [mixture], "1")
+    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
     let user = new User("1", "Lucian", "lucian@fs.com.br", [todayMenu]);
     user.changeName("Lucian Tavares");
 
@@ -70,7 +70,7 @@ describe("User unit tests", () => {
     const day = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = day
     const mixture = new Mixtures("1", "Frango");
-    const todayMenu = new TodayMenu("1", [mixture], "1")
+    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
     let user = new User("1", "Lucian", "lucian@fs.com.br", [todayMenu]);
     user.changeEmail("lucian@fullc.com.br");
 
@@ -82,7 +82,7 @@ describe("User unit tests", () => {
     const day = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = day
     const mixture = new Mixtures("1", "Frango");
-    const todayMenu = new TodayMenu("1", [mixture], "1")
+    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
     let user = new User("1", "Lucian", "lucian@fs.com.br", [todayMenu]);
     user.activate();
 
@@ -94,7 +94,7 @@ describe("User unit tests", () => {
     const day = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = day
     const mixture = new Mixtures("1", "Frango");
-    const todayMenu = new TodayMenu("1", [mixture], "1")
+    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
     let user = new User("1", "Lucian", "lucian@fs.com.br", [todayMenu]);
     user.deactivate();
 
@@ -107,7 +107,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("", "Lucian", "lucian@fs.com.br", [todayMenu]);
       user.activate();
     }).toThrowError("Id is required")
@@ -119,7 +119,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("1", "", "lucian@fs.com.br", [todayMenu]);
       user.activate();
     }).toThrowError("Name is required")
@@ -131,7 +131,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("1", "Lucian", "", [todayMenu]);
       user.activate();
     }).toThrowError("Email is required")
@@ -143,7 +143,7 @@ describe("User unit tests", () => {
       const day = new DayOfTheWeek("Segunda-Feira")
       typeOfMeal.DayOfTheWeek = day
       const mixture = new Mixtures("1", "Frango");
-      const todayMenu = new TodayMenu("1", [mixture], "1")
+      const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
       let user = new User("1", "Lucian", "lucian@fs.com.br", []);
       user.activate();
     }).toThrowError("Today Menu is required")

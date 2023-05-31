@@ -1,4 +1,5 @@
-import DayOfTheWeek from "./value-object/dayOfTheWeek";
+import DayOfTheWeek from "../../today-menu/entity/value-object/dayOfTheWeek";
+
 
 export default class TypeOfMeal {
 

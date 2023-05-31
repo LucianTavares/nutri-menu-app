@@ -1,4 +1,4 @@
-@startuml
+@startuml mixtureUseCase
 
 :Admin: -> (Criar mistura)
 :Admin: -> (Atualizar mistura)

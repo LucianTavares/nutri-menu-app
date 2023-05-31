@@ -1,4 +1,4 @@
-@startuml
+@startuml todayMenuUseCase
 
 :Admin: -> (Criar menu do dia)
 :Admin: -> (Atualizar menu do dia)
