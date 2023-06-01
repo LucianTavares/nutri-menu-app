@@ -10,6 +10,7 @@ import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal";
 export default class TodayMenuRepository implements TodayMenuRepositoryInterface {
 
   async create(entity: TodayMenu): Promise<void> {
+
     await TodayMenuModel.create(
       {
         id: entity.id,
@@ -34,6 +35,7 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
         include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
       }
     )
+
   }
 
   async update(entity: TodayMenu): Promise<void> {

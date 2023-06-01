@@ -43,7 +43,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -79,7 +79,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -159,7 +159,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -207,7 +207,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal]})
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -218,7 +218,6 @@ describe("Today Menu repository tests", () => {
       include: ["mixtures", "type_of_meal"]
     })
 
-    
     const foundTodayMenu = await todayMenuRepository.find(todayMenu.id)
 
     expect(todayMenuModel.toJSON()).toStrictEqual({
@@ -242,5 +241,92 @@ describe("Today Menu repository tests", () => {
       active: foundTodayMenu.isActive(),
       its_frozen: foundTodayMenu.isFrozen(),
     })
+  })
+
+  it("should find all Menu", async () => {
+
+    const typeOfMealOne = new TypeOfMeal("1", "Café")
+    const dayOfTheWeekOne = new DayOfTheWeek("Segunda-Feira")
+    typeOfMealOne.DayOfTheWeek = dayOfTheWeekOne
+    typeOfMealOne.activate()
+
+    const typeOfMealTwo = new TypeOfMeal("2", "Almoço")
+    const dayOfTheWeekTwo = new DayOfTheWeek("Segunda-Feira")
+    typeOfMealTwo.DayOfTheWeek = dayOfTheWeekTwo
+    typeOfMealTwo.activate()
+
+    const mixtureOne = new Mixtures("1", "Pão")
+    mixtureOne.cannotFreeze()
+    mixtureOne.activate()
+
+    const mixtureTwo = new Mixtures("2", "Pão")
+    mixtureTwo.cannotFreeze()
+    mixtureTwo.activate()
+
+    const todayMenuRepository = new TodayMenuRepository()
+
+    const todayMenuOne = new TodayMenu({ id: "1", mixtures: [mixtureOne], typeOfMeal: [typeOfMealOne] })
+    todayMenuOne.unfreeze()
+    todayMenuOne.activate()
+
+    const todayMenuTwo = new TodayMenu({ id: "2", mixtures: [mixtureTwo], typeOfMeal: [typeOfMealTwo] })
+    todayMenuTwo.unfreeze()
+    todayMenuTwo.activate()
+
+    await todayMenuRepository.create(todayMenuOne)
+    await todayMenuRepository.create(todayMenuTwo)
+
+    const foundTodayMenus = await TodayMenuModel.findAll({
+      include: ["mixtures", "type_of_meal"]
+    })
+
+    expect(foundTodayMenus.map((menu) => menu.toJSON())).toStrictEqual([
+      {
+        id: todayMenuOne.id,
+        active: todayMenuOne.isActive(),
+        its_frozen: todayMenuOne.isFrozen(),
+        mixtures: [
+          {
+            id: mixtureOne.id,
+            mixture: mixtureOne.mixture,
+            can_freeze: mixtureOne.isFreeze(),
+            active: mixtureOne.isActive(),
+            today_menu_id: todayMenuOne.id,
+          }
+        ],
+        type_of_meal: [
+          {
+            id: typeOfMealOne.id,
+            type: typeOfMealOne.type,
+            day: typeOfMealOne.DayOfTheWeek.day,
+            active: typeOfMealOne.isActive(),
+            today_menu_id: todayMenuOne.id
+          }
+        ]
+      },
+      {
+        id: todayMenuTwo.id,
+        active: todayMenuTwo.isActive(),
+        its_frozen: todayMenuTwo.isFrozen(),
+        mixtures: [
+          {
+            id: mixtureTwo.id,
+            mixture: mixtureTwo.mixture,
+            can_freeze: mixtureTwo.isFreeze(),
+            active: mixtureTwo.isActive(),
+            today_menu_id: todayMenuTwo.id,
+          }
+        ],
+        type_of_meal: [
+          {
+            id: typeOfMealTwo.id,
+            type: typeOfMealTwo.type,
+            day: typeOfMealTwo.DayOfTheWeek.day,
+            active: typeOfMealTwo.isActive(),
+            today_menu_id: todayMenuTwo.id
+          }
+        ]
+      }
+    ])
   })
 })
