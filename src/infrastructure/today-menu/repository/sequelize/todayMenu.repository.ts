@@ -5,37 +5,37 @@ import TodayMenuModel from "./todayMenu.model";
 import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model";
 import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model";
 import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal";
+import UserModel from "../../../user/repository/sequelize/user.model";
 
 
 export default class TodayMenuRepository implements TodayMenuRepositoryInterface {
 
   async create(entity: TodayMenu): Promise<void> {
-
-    await TodayMenuModel.create(
-      {
-        id: entity.id,
-        mixtures: entity.mixtures.map((m) => ({
-          id: m.id,
-          mixture: m.mixture,
-          can_freeze: m.isFreeze(),
-          active: m.isActive(),
-          today_menu_id: entity.id,
-        })),
-        type_of_meal: entity.typeOfMeal.map((type) => ({
-          id: type.id,
-          type: type.type,
-          day: type.DayOfTheWeek.day,
-          active: type.isActive(),
-          today_menu_id: entity.id
-        })),
-        its_frozen: entity.isFrozen(),
-        active: entity.isActive(),
-      },
-      {
-        include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
-      }
-    )
-
+      await TodayMenuModel.create(
+        {
+          id: entity.id,
+          mixtures: entity.mixtures.map((m) => ({
+            id: m.id,
+            mixture: m.mixture,
+            can_freeze: m.isFreeze(),
+            active: m.isActive(),
+            today_menu_id: entity.id,
+          })),
+          type_of_meal: entity.typeOfMeal.map((type) => ({
+            id: type.id,
+            type: type.type,
+            day: type.DayOfTheWeek.day,
+            active: type.isActive(),
+            today_menu_id: entity.id
+          })),
+          user_id: entity.userId,
+          its_frozen: entity.isFrozen(),
+          active: entity.isActive(),
+        },
+        {
+          include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
+        }
+      )
   }
 
   async update(entity: TodayMenu): Promise<void> {
@@ -72,6 +72,7 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
 
         await TodayMenuModel.update(
           {
+            user_id: entity.userId,
             its_frozen: entity.isFrozen(),
             active: entity.isActive()
           },
@@ -110,7 +111,8 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
       typeOfMeal: todayMenu.type_of_meal.map(type => new TypeOfMeal(
         type.id,
         type.type
-      ))
+      )),
+      userId: todayMenu.user_id,
     })
 
   }

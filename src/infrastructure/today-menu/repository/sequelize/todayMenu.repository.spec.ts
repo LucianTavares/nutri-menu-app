@@ -3,10 +3,13 @@ import TodayMenuRepository from "./todayMenu.repository"
 import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model"
 import TodayMenuModel from "./todayMenu.model"
+import User from "../../../../domain/user/entity/user"
 import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal"
 import DayOfTheWeek from "../../../../domain/today-menu/entity/value-object/dayOfTheWeek"
 import Mixtures from "../../../../domain/mixture/entity/mixtures"
+import UserModel from "../../../user/repository/sequelize/user.model"
 import TodayMenu from "../../../../domain/today-menu/entity/todayMenu"
+import UserRepository from "../../../user/repository/sequelize/user.repository"
 
 describe("Today Menu repository tests", () => {
 
@@ -21,9 +24,10 @@ describe("Today Menu repository tests", () => {
     })
 
     sequelize.addModels([
+      UserModel,
       TypeOfMealModel,
       MixturesModel,
-      TodayMenuModel
+      TodayMenuModel,
     ])
     await sequelize.sync()
   })
@@ -33,6 +37,11 @@ describe("Today Menu repository tests", () => {
   })
 
   it("should create a today menu", async () => {
+
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    await userRepository.create(user)
+
     const typeOfMeal = new TypeOfMeal("1", "Café")
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
@@ -43,7 +52,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -69,6 +78,10 @@ describe("Today Menu repository tests", () => {
 
   it("should update a today menu", async () => {
 
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    await userRepository.create(user)
+
     const typeOfMeal = new TypeOfMeal("1", "Café")
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
@@ -79,7 +92,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -107,7 +120,8 @@ describe("Today Menu repository tests", () => {
         day: "Segunda-Feira",
         active: true,
         today_menu_id: "1"
-      }]
+      }],
+      user_id: "1"
     })
 
     mixture.changeMixture("Frango")
@@ -143,11 +157,16 @@ describe("Today Menu repository tests", () => {
         day: "Segunda-Feira",
         active: true,
         today_menu_id: "1"
-      }]
+      }],
+      user_id: "1"
     })
   })
 
   it("should delete a today menu", async () => {
+
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal("1", "Café")
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
@@ -159,7 +178,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -187,7 +206,8 @@ describe("Today Menu repository tests", () => {
         day: "Segunda-Feira",
         active: true,
         today_menu_id: "1"
-      }]
+      }],
+      user_id: "1"
     })
 
     const result = await todayMenuRepository.delete(todayMenu.id)
@@ -196,6 +216,10 @@ describe("Today Menu repository tests", () => {
   })
 
   it("should find a today menu", async () => {
+
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal("1", "Café")
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
@@ -207,7 +231,7 @@ describe("Today Menu repository tests", () => {
     mixture.activate()
 
     const todayMenuRepository = new TodayMenuRepository()
-    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal] })
+    const todayMenu = new TodayMenu({ id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id })
     todayMenu.unfreeze()
     todayMenu.activate()
 
@@ -238,12 +262,17 @@ describe("Today Menu repository tests", () => {
         active: typeOfMeal.isActive(),
         today_menu_id: todayMenu.id
       }],
+      user_id: foundTodayMenu.userId,
       active: foundTodayMenu.isActive(),
       its_frozen: foundTodayMenu.isFrozen(),
     })
   })
 
   it("should find all Menu", async () => {
+
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    await userRepository.create(user)
 
     const typeOfMealOne = new TypeOfMeal("1", "Café")
     const dayOfTheWeekOne = new DayOfTheWeek("Segunda-Feira")
@@ -265,11 +294,11 @@ describe("Today Menu repository tests", () => {
 
     const todayMenuRepository = new TodayMenuRepository()
 
-    const todayMenuOne = new TodayMenu({ id: "1", mixtures: [mixtureOne], typeOfMeal: [typeOfMealOne] })
+    const todayMenuOne = new TodayMenu({ id: "1", mixtures: [mixtureOne], typeOfMeal: [typeOfMealOne], userId: user.id })
     todayMenuOne.unfreeze()
     todayMenuOne.activate()
 
-    const todayMenuTwo = new TodayMenu({ id: "2", mixtures: [mixtureTwo], typeOfMeal: [typeOfMealTwo] })
+    const todayMenuTwo = new TodayMenu({ id: "2", mixtures: [mixtureTwo], typeOfMeal: [typeOfMealTwo], userId: user.id })
     todayMenuTwo.unfreeze()
     todayMenuTwo.activate()
 
@@ -302,7 +331,8 @@ describe("Today Menu repository tests", () => {
             active: typeOfMealOne.isActive(),
             today_menu_id: todayMenuOne.id
           }
-        ]
+        ],
+        user_id: todayMenuOne.userId
       },
       {
         id: todayMenuTwo.id,
@@ -325,7 +355,8 @@ describe("Today Menu repository tests", () => {
             active: typeOfMealTwo.isActive(),
             today_menu_id: todayMenuTwo.id
           }
-        ]
+        ],
+        user_id: todayMenuTwo.userId
       }
     ])
   })

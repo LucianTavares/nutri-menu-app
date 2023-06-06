@@ -1,4 +1,5 @@
-import TodayMenu from "./todayMenu";
+import TodayMenu from "../../today-menu/entity/todayMenu";
+
 
 export default class User {
 
@@ -8,12 +9,15 @@ export default class User {
   private _todayMenu: TodayMenu[];
   private _active: boolean = false;
 
-  constructor(id: string, name: string, email: string, todayMenu: TodayMenu[]) {
+  constructor(id: string, name: string, email: string) {
     this._id = id;
     this._name = name;
     this._email = email;
-    this._todayMenu = todayMenu;
     this.validate();
+  }
+
+  get id(): string {
+    return this._id;
   }
 
   get name(): string {
@@ -48,9 +52,9 @@ export default class User {
     if (this._email.length === 0) {
       throw new Error("Email is required")
     }
-    if (this._todayMenu.length === 0) {
-      throw new Error("Today Menu is required")
-    }
+    // if (this._todayMenu.length === 0) {
+    //   throw new Error("Today Menu is required")
+    // }
   }
 
   activate() {

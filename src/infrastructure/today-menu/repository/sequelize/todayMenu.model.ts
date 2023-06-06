@@ -1,6 +1,7 @@
-import { Column, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
+import { BelongsTo, Column, ForeignKey, HasMany, HasOne, Model, PrimaryKey, Table } from "sequelize-typescript";
 import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model";
 import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model";
+import UserModel from "../../../user/repository/sequelize/user.model";
 
 @Table({
   tableName: "today_menu",
@@ -27,4 +28,13 @@ export default class TodayMenuModel extends Model {
     onDelete: 'CASCADE'
   })
   declare type_of_meal: TypeOfMealModel[];
+
+  @ForeignKey(() => UserModel)
+  @Column({allowNull: false})
+  declare user_id: string;
+
+  @BelongsTo(() => UserModel, {
+    onDelete: 'CASCADE'
+  })
+  declare user: UserModel
 }

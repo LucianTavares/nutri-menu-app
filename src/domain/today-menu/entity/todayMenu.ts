@@ -2,9 +2,10 @@ import Mixtures from "../../mixture/entity/mixtures";
 import TypeOfMeal from "../../type-of-meal/entity/typeOfMeal";
 
 type TodayMenuProps = {
-  id?: string,
+  id: string,
   mixtures: Mixtures[],
   typeOfMeal: TypeOfMeal[],
+  userId: string,
   itsFrozen?: boolean,
   active?: boolean,
 }
@@ -13,7 +14,7 @@ export default class TodayMenu {
 
   private _id: string;
   private _mixtures: Mixtures[];
-  // _dayOfTheWeek!: DayOfTheWeek;
+  private _userId: string;
   private _typeOfMeal: TypeOfMeal[];
   private _itsFrozen: boolean;
   private _active: boolean;
@@ -22,6 +23,7 @@ export default class TodayMenu {
     this._id = props.id;
     this._mixtures = props.mixtures;
     this._typeOfMeal = props.typeOfMeal;
+    this._userId = props.userId;
     this._itsFrozen = props.itsFrozen || false;
     this._active = props.active || false;
     this.validate();
@@ -37,6 +39,9 @@ export default class TodayMenu {
     if (this._typeOfMeal.length === 0) {
       throw new Error("Type of meal is required")
     }
+    if (this._userId.length === 0) {
+      throw new Error("User Id is required")
+    }
   }
 
   get id(): string {
@@ -49,6 +54,10 @@ export default class TodayMenu {
 
   get typeOfMeal(): TypeOfMeal[] {
     return this._typeOfMeal;
+  }
+
+  get userId(): string {
+    return this._userId
   }
 
   freeze() {
