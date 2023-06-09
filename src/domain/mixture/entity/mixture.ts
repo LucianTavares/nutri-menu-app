@@ -1,4 +1,6 @@
-export default class Mixtures {
+import MixtureInterface from "./mixture.interface";
+
+export default class Mixture implements MixtureInterface {
 
   private _id: string;
   private _mixture: string;

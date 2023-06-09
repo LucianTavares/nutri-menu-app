@@ -1,7 +1,8 @@
 import TodayMenu from "../../today-menu/entity/todayMenu";
+import UserInterface from "./user.interface";
 
 
-export default class User {
+export default class User implements UserInterface {
 
   private _id: string;
   private _name: string;
@@ -52,9 +53,6 @@ export default class User {
     if (this._email.length === 0) {
       throw new Error("Email is required")
     }
-    // if (this._todayMenu.length === 0) {
-    //   throw new Error("Today Menu is required")
-    // }
   }
 
   activate() {

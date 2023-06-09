@@ -1,4 +1,4 @@
-import Mixtures from "../../../../domain/mixture/entity/mixtures";
+import Mixtures from "../../../../domain/mixture/entity/mixture";
 import TodayMenu from "../../../../domain/today-menu/entity/todayMenu";
 import TodayMenuRepositoryInterface from "../../../../domain/today-menu/repository/todayMenu-repository.interface";
 import TodayMenuModel from "./todayMenu.model";

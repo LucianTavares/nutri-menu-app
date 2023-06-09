@@ -1,5 +1,6 @@
-import Mixtures from "../../mixture/entity/mixtures";
+import Mixtures from "../../mixture/entity/mixture";
 import TypeOfMeal from "../../type-of-meal/entity/typeOfMeal";
+import TodayMenuInterface from "./todayMenu.interface";
 
 type TodayMenuProps = {
   id: string,
@@ -10,7 +11,7 @@ type TodayMenuProps = {
   active?: boolean,
 }
 
-export default class TodayMenu {
+export default class TodayMenu implements TodayMenuInterface {
 
   private _id: string;
   private _mixtures: Mixtures[];

@@ -1,7 +1,8 @@
 import DayOfTheWeek from "../../today-menu/entity/value-object/dayOfTheWeek";
+import TypeOfMealInterface from "./typeOfMeal.interface";
 
 
-export default class TypeOfMeal {
+export default class TypeOfMeal implements TypeOfMealInterface {
 
   private _id: string;
   private _type: string;

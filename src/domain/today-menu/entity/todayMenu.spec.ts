@@ -1,4 +1,4 @@
-import Mixtures from "../../mixture/entity/mixtures"
+import Mixtures from "../../mixture/entity/mixture"
 import TypeOfMeal from "../../type-of-meal/entity/typeOfMeal"
 import User from "../../user/entity/user"
 import TodayMenu from "./todayMenu"
