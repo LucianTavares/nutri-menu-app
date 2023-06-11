@@ -1,6 +1,7 @@
 import Mixture from "../../mixture/entity/mixture"
 import TypeOfMeal from "../../type-of-meal/entity/typeOfMeal"
 import TodayMenu from "../entity/todayMenu"
+import TodayMenuInterface from "../entity/todayMenu.interface"
 import DayOfTheWeek from "../entity/value-object/dayOfTheWeek"
 
 interface TodayMenuFactoryProps {
@@ -21,7 +22,7 @@ interface TodayMenuFactoryProps {
 
 export default class TodayMenuFactory {
 
-  public static create(props: TodayMenuFactoryProps): TodayMenu {
+  public static create(props: TodayMenuFactoryProps): TodayMenuInterface {
 
     const mixture = props.mixtures.map((m) => {
       return new Mixture(
