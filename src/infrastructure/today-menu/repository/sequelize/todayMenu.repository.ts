@@ -6,82 +6,79 @@ import MixturesModel from "../../../mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../type-of-meal/repository/sequelize/typeOfMeal.model";
 import TypeOfMeal from "../../../../domain/type-of-meal/entity/typeOfMeal";
 import UserModel from "../../../user/repository/sequelize/user.model";
+import DayOfTheWeek from "../../../../domain/today-menu/entity/value-object/dayOfTheWeek";
 
 
 export default class TodayMenuRepository implements TodayMenuRepositoryInterface {
 
   async create(entity: TodayMenu): Promise<void> {
-      await TodayMenuModel.create(
-        {
-          id: entity.id,
-          mixtures: entity.mixtures.map((m) => ({
-            id: m.id,
-            mixture: m.mixture,
-            can_freeze: m.isFreeze(),
-            active: m.isActive(),
-            today_menu_id: entity.id,
-          })),
-          type_of_meal: entity.typeOfMeal.map((type) => ({
-            id: type.id,
-            type: type.type,
-            day: type.DayOfTheWeek.day,
-            active: type.isActive(),
-            today_menu_id: entity.id
-          })),
-          user_id: entity.userId,
-          its_frozen: entity.isFrozen(),
-          active: entity.isActive(),
-        },
-        {
-          include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
-        }
-      )
-  }
-
-  async update(entity: TodayMenu): Promise<void> {
-    try {
-      const sequelize = TodayMenuModel.sequelize
-      await sequelize.transaction(async (t) => {
-
-        await MixturesModel.destroy({
-          where: { id: entity.mixtures.map(m => m.id).join() },
-          transaction: t
-        })
-        const mixtures = entity.mixtures.map((m) => ({
+    await TodayMenuModel.create(
+      {
+        id: entity.id,
+        mixtures: entity.mixtures.map((m) => ({
           id: m.id,
           mixture: m.mixture,
           can_freeze: m.isFreeze(),
           active: m.isActive(),
-          today_menu_id: entity.id
-        }))
-
-        await TypeOfMealModel.destroy({
-          where: { id: entity.typeOfMeal.map(m => m.id).join() },
-          transaction: t
-        })
-        const typeOfMeal = entity.typeOfMeal.map((type) => ({
+          today_menu_id: entity.id,
+        })),
+        type_of_meal: entity.typeOfMeal.map((type) => ({
           id: type.id,
           type: type.type,
           day: type.DayOfTheWeek.day,
           active: type.isActive(),
           today_menu_id: entity.id
-        }))
+        })),
+        user_id: entity.userId,
+        its_frozen: entity.isFrozen(),
+        active: entity.isActive(),
+      },
+      {
+        include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
+      }
+    )
+  }
 
-        await MixturesModel.bulkCreate(mixtures, { transaction: t })
-        await TypeOfMealModel.bulkCreate(typeOfMeal, { transaction: t })
+  async update(entity: TodayMenu): Promise<void> {
+    const sequelize = TodayMenuModel.sequelize
+    await sequelize.transaction(async (t) => {
 
-        await TodayMenuModel.update(
-          {
-            user_id: entity.userId,
-            its_frozen: entity.isFrozen(),
-            active: entity.isActive()
-          },
-          { where: { id: entity.id }, transaction: t }
-        )
+      await MixturesModel.destroy({
+        where: { id: entity.mixtures.map(m => m.id).join() },
+        transaction: t
       })
-    } catch (err) {
-      console.error(err)
-    }
+      const mixtures = entity.mixtures.map((m) => ({
+        id: m.id,
+        mixture: m.mixture,
+        can_freeze: m.isFreeze(),
+        active: m.isActive(),
+        today_menu_id: entity.id
+      }))
+
+      await TypeOfMealModel.destroy({
+        where: { id: entity.typeOfMeal.map(m => m.id).join() },
+        transaction: t
+      })
+      const typeOfMeal = entity.typeOfMeal.map((type) => ({
+        id: type.id,
+        type: type.type,
+        day: type.DayOfTheWeek.day,
+        active: type.isActive(),
+        today_menu_id: entity.id
+      }))
+
+      await MixturesModel.bulkCreate(mixtures, { transaction: t })
+      await TypeOfMealModel.bulkCreate(typeOfMeal, { transaction: t })
+
+      await TodayMenuModel.update(
+        {
+          user_id: entity.userId,
+          its_frozen: entity.isFrozen(),
+          active: entity.isActive()
+        },
+        { where: { id: entity.id }, transaction: t }
+      )
+    })
   }
 
   async delete(id: string): Promise<void> {
@@ -118,7 +115,38 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
   }
 
   async findAll(): Promise<TodayMenu[]> {
-    throw new Error("Method not implemented.");
-  }
+    const todayMenuModels = await TodayMenuModel.findAll({
+      include: [{ model: MixturesModel }, { model: TypeOfMealModel }]
+    })
 
+    return todayMenuModels.map(todayMenuModel =>
+      new TodayMenu({
+        id: todayMenuModel.id,
+        itsFrozen: todayMenuModel.its_frozen,
+        active: todayMenuModel.active,
+        mixtures: todayMenuModel.mixtures.map((m) => {
+          let mixture = new Mixtures(
+            m.id,
+            m.mixture
+          )
+          if (m.active) {
+            mixture.activate()
+          }
+          return mixture
+        }),
+        typeOfMeal: todayMenuModel.type_of_meal.map((t) => {
+          let type = new TypeOfMeal(
+            t.id,
+            t.type
+          )
+          const dayOfTheWeek = new DayOfTheWeek(t.day)
+          type.changeDay(dayOfTheWeek)
+          if (t.active) {
+            type.activate()
+          }
+          return type
+        }),
+        userId: todayMenuModel.user_id
+      }))
+  }
 }

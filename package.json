@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "dev": "nodemon src/infrastructure/api/server.ts"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.26.0",
     "sequelize-typescript": "^2.1.5",
+    "sonar-scanner": "^3.1.0",
     "sqlite3": "^5.1.2",
     "ts-node": "^10.9.1",
     "tslint": "^6.1.3",
