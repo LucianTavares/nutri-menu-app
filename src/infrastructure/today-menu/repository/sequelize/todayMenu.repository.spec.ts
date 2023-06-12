@@ -305,59 +305,37 @@ describe("Today Menu repository tests", () => {
     await todayMenuRepository.create(todayMenuOne)
     await todayMenuRepository.create(todayMenuTwo)
 
-    const foundTodayMenus = await TodayMenuModel.findAll({
-      include: ["mixtures", "type_of_meal"]
-    })
+    const menus = [todayMenuOne, todayMenuTwo]
 
-    expect(foundTodayMenus.map((menu) => menu.toJSON())).toStrictEqual([
-      {
-        id: todayMenuOne.id,
-        active: todayMenuOne.isActive(),
-        its_frozen: todayMenuOne.isFrozen(),
-        mixtures: [
-          {
-            id: mixtureOne.id,
-            mixture: mixtureOne.mixture,
-            can_freeze: mixtureOne.isFreeze(),
-            active: mixtureOne.isActive(),
-            today_menu_id: todayMenuOne.id,
-          }
-        ],
-        type_of_meal: [
-          {
-            id: typeOfMealOne.id,
-            type: typeOfMealOne.type,
-            day: typeOfMealOne.DayOfTheWeek.day,
-            active: typeOfMealOne.isActive(),
-            today_menu_id: todayMenuOne.id
-          }
-        ],
-        user_id: todayMenuOne.userId
-      },
-      {
-        id: todayMenuTwo.id,
-        active: todayMenuTwo.isActive(),
-        its_frozen: todayMenuTwo.isFrozen(),
-        mixtures: [
-          {
-            id: mixtureTwo.id,
-            mixture: mixtureTwo.mixture,
-            can_freeze: mixtureTwo.isFreeze(),
-            active: mixtureTwo.isActive(),
-            today_menu_id: todayMenuTwo.id,
-          }
-        ],
-        type_of_meal: [
-          {
-            id: typeOfMealTwo.id,
-            type: typeOfMealTwo.type,
-            day: typeOfMealTwo.DayOfTheWeek.day,
-            active: typeOfMealTwo.isActive(),
-            today_menu_id: todayMenuTwo.id
-          }
-        ],
-        user_id: todayMenuTwo.userId
-      }
-    ])
+    const foundTodayMenus = await todayMenuRepository.findAll()
+
+    expect(menus).toEqual(foundTodayMenus)
+    expect(foundTodayMenus.length).toBe(2)
+
+    expect(foundTodayMenus[0].id).toBe(todayMenuOne.id)
+    expect(foundTodayMenus[0].isFrozen()).toBe(todayMenuOne.isFrozen())
+    expect(foundTodayMenus[0].isActive()).toBe(todayMenuOne.isActive())
+    expect(foundTodayMenus[0].mixtures[0].id).toBe(todayMenuOne.mixtures[0].id)
+    expect(foundTodayMenus[0].mixtures[0].mixture).toBe(todayMenuOne.mixtures[0].mixture)
+    expect(foundTodayMenus[0].mixtures[0].isActive()).toBe(todayMenuOne.mixtures[0].isActive())
+    expect(foundTodayMenus[0].mixtures[0].isFreeze()).toBe(todayMenuOne.mixtures[0].isFreeze())
+    expect(foundTodayMenus[0].typeOfMeal[0].id).toBe(todayMenuOne.typeOfMeal[0].id)
+    expect(foundTodayMenus[0].typeOfMeal[0].type).toBe(todayMenuOne.typeOfMeal[0].type)
+    expect(foundTodayMenus[0].typeOfMeal[0].isActive()).toBe(todayMenuOne.typeOfMeal[0].isActive())
+    expect(foundTodayMenus[0].typeOfMeal[0].DayOfTheWeek.day).toBe(todayMenuOne.typeOfMeal[0].DayOfTheWeek.day)
+    expect(foundTodayMenus[0].userId).toBe(todayMenuOne.userId)
+
+    expect(foundTodayMenus[1].id).toBe(todayMenuTwo.id)
+    expect(foundTodayMenus[1].isFrozen()).toBe(todayMenuTwo.isFrozen())
+    expect(foundTodayMenus[1].isActive()).toBe(todayMenuTwo.isActive())
+    expect(foundTodayMenus[1].mixtures[0].id).toBe(todayMenuTwo.mixtures[0].id)
+    expect(foundTodayMenus[1].mixtures[0].mixture).toBe(todayMenuTwo.mixtures[0].mixture)
+    expect(foundTodayMenus[1].mixtures[0].isActive()).toBe(todayMenuTwo.mixtures[0].isActive())
+    expect(foundTodayMenus[1].mixtures[0].isFreeze()).toBe(todayMenuTwo.mixtures[0].isFreeze())
+    expect(foundTodayMenus[1].typeOfMeal[0].id).toBe(todayMenuTwo.typeOfMeal[0].id)
+    expect(foundTodayMenus[1].typeOfMeal[0].type).toBe(todayMenuTwo.typeOfMeal[0].type)
+    expect(foundTodayMenus[1].typeOfMeal[0].isActive()).toBe(todayMenuTwo.typeOfMeal[0].isActive())
+    expect(foundTodayMenus[1].typeOfMeal[0].DayOfTheWeek.day).toBe(todayMenuTwo.typeOfMeal[0].DayOfTheWeek.day)
+    expect(foundTodayMenus[1].userId).toBe(todayMenuTwo.userId)
   })
 })
