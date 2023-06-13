@@ -3,7 +3,7 @@ name: ci-nutri-menu-app
 on:
   pull_request:
     branches:
-      - main
+      - develop
 jobs:
   status-check:
     runs-on: ubuntu-22.04
@@ -15,3 +15,8 @@ jobs:
       - run: docker compose run -u root -d -p 3000:3000 app
       - run: docker compose exec -T app bash -c "npm install"
       - run: docker compose exec -T app bash -c "npm test"
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
