@@ -92,4 +92,26 @@ describe("User repository tests", () => {
 
     expect(result).toBeUndefined()
   })
+
+  it("should find a user", async () => {
+
+    const userRepository = new UserRepository()
+    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    user.activate()
+
+    await userRepository.create(user)
+
+    const userModel = await UserModel.findOne({
+      where: { id: user.id,}
+    })
+
+    const foundUser = await userRepository.find(user.id)
+
+    expect(userModel.toJSON()).toStrictEqual({
+      id: foundUser.id,
+      name: foundUser.name,
+      email: foundUser.email,
+      active: true
+    })
+  })
 })
