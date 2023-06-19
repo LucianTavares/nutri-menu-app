@@ -1,4 +1,4 @@
-import UserRepository from "../../../infrastructure/user/repository/sequelize/user.repository"
+
 import User from "../../../domain/user/entity/user"
 import FindUserUseCase from "./find.usecase"
 
@@ -14,7 +14,7 @@ const MockRepository = () => {
   }
 }
 
-describe("Test find User use case", () => {
+describe("Unit test find User use case", () => {
 
   it("should find a user", async () => {
 
