@@ -56,7 +56,7 @@ export default class User implements UserInterface {
   }
 
   activate() {
-    this._active = true;  
+    this._active = true;
   }
 
   deactivate() {

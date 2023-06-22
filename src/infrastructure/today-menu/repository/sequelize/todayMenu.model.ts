@@ -36,5 +36,5 @@ export default class TodayMenuModel extends Model {
   @BelongsTo(() => UserModel, {
     onDelete: 'CASCADE'
   })
-  declare user: UserModel
+  declare user: Awaited<UserModel>
 }
