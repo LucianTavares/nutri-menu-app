@@ -4,7 +4,7 @@ import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequel
 import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.model"
 import UserRepository from "../../../infrastructure/user/repository/sequelize/user.repository"
-import UpdateUserUseCase from "./update.usecase"
+import UpdateUserUseCase from "./update.user.usecase"
 import User from "../../../domain/user/entity/user"
 
 describe("Integration test update User use case", () => {

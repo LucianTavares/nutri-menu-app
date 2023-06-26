@@ -41,31 +41,48 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
   }
 
   async find(id: string): Promise<TypeOfMeal> {
+    let typeOfMeal
+    try {
+      typeOfMeal = await TypeOfMealModel.findOne(
+        {
+          where: { id: id }
+        }
+      )
+    }catch (err) {
+      throw new Error("Type Of Meal not found")
+    }
 
-    const typeOfMeal = await TypeOfMealModel.findOne(
-      {
-        where: { id: id }
-      }
-    )
-
-    return new TypeOfMeal(
+    const type = new TypeOfMeal(
       typeOfMeal.id,
       typeOfMeal.type
     )
+    const dayOfTheWeek = new DayOfTheWeek(typeOfMeal.day)
+    type.DayOfTheWeek = dayOfTheWeek
+
+    return type
   }
 
   async findByType(type: string): Promise<TypeOfMeal> {
 
-    const typeOfMeal = await TypeOfMealModel.findOne(
-      {
-        where: { type: type }
-      }
-    )
+    let typeOfMealFind
+    try {
+      typeOfMealFind = await TypeOfMealModel.findOne(
+        {
+          where: { type: type }
+        }
+      )
+    }catch (err) {
+      throw new Error("Type Of Meal not found")
+    }
 
-    return new TypeOfMeal(
-      typeOfMeal.id,
-      typeOfMeal.type
+    const typeOfMeal = new TypeOfMeal(
+      typeOfMealFind.id,
+      typeOfMealFind.type
     )
+    const dayOfTheWeek = new DayOfTheWeek(typeOfMeal.DayOfTheWeek.day)
+    typeOfMeal.DayOfTheWeek = dayOfTheWeek
+
+    return typeOfMeal
   }
 
   async findAll(): Promise<TypeOfMeal[]> {

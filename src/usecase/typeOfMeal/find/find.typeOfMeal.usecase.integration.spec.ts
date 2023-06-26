@@ -1,18 +1,19 @@
 import { Sequelize } from "sequelize-typescript"
+import UserModel from "../../../infrastructure/user/repository/sequelize/user.model"
+import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequelize/todayMenu.model"
+import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.model"
 import TypeOfMealRepository from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.repository"
 import TypeOfMeal from "../../../domain/type-of-meal/entity/typeOfMeal"
 import DayOfTheWeek from "../../../domain/today-menu/entity/value-object/dayOfTheWeek"
-import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequelize/todayMenu.model"
-import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
-import UserModel from "../../../infrastructure/user/repository/sequelize/user.model"
-import CreateTypeOfMealUseCase from "./create.typeOfMeal"
+import FindTypeOfMealUseCase from "./find.typeOfMeal.usecase"
 
-describe("Integration test create Type Of Meal use case", () => {
+describe("Integration test find Type Of Meal use case", () => {
 
   let sequelize: Sequelize
 
   beforeEach(async () => {
+
     sequelize = new Sequelize({
       dialect: 'sqlite',
       storage: ":memory:",
@@ -20,7 +21,7 @@ describe("Integration test create Type Of Meal use case", () => {
       sync: { force: true }
     })
 
-    sequelize.addModels([TypeOfMealModel, TodayMenuModel, MixturesModel, UserModel])
+    sequelize.addModels([UserModel, TodayMenuModel, MixturesModel, TypeOfMealModel])
     await sequelize.sync()
   })
 
@@ -28,30 +29,27 @@ describe("Integration test create Type Of Meal use case", () => {
     await sequelize.close()
   })
 
-  it("should create a type of meal", async () => {
+  it("should find a type of meal", async () => {
 
     const typeOfMealRepository = new TypeOfMealRepository()
-    const usecase = new CreateTypeOfMealUseCase(typeOfMealRepository)
+    const usecase = new FindTypeOfMealUseCase(typeOfMealRepository)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
-    const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
+    const typeOfMeal = new TypeOfMeal("1", "Janta")
+    const dayOfTheWeek = new DayOfTheWeek("Quarta-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
     await typeOfMealRepository.create(typeOfMeal)
 
     const input = {
-      type: "Café",
-      dayOfTheWeek: {
-        day: "Segunda-Feira"
-      }
+      id: "1"
     }
 
     const output = {
-      id: expect.any(String),
-      type: "Café",
+      id: "1",
+      type: "Janta",
       dayOfTheWeek: {
-        day: "Segunda-Feira"
+        day: "Quarta-Feira"
       }
     }
 
