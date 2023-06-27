@@ -3,11 +3,12 @@ import UserModel from "../../../infrastructure/user/repository/sequelize/user.mo
 import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequelize/todayMenu.model"
 import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.model"
-import UserRepository from "../../../infrastructure/user/repository/sequelize/user.repository"
-import UpdateUserUseCase from "./update.user.usecase"
-import User from "../../../domain/user/entity/user"
+import TypeOfMealRepository from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.repository"
+import TypeOfMeal from "../../../domain/type-of-meal/entity/typeOfMeal"
+import DayOfTheWeek from "../../../domain/today-menu/entity/value-object/dayOfTheWeek"
+import UpdateTypeOfMealUseCase from "./update.typeOfMeal.usecase"
 
-describe("Integration test update User use case", () => {
+describe("Integration test update Type Of Meal use case", () => {
 
   let sequelize: Sequelize
 
@@ -33,20 +34,25 @@ describe("Integration test update User use case", () => {
     await sequelize.close()
   })
 
-  it("should update a user", async () => {
+  it("should update a type of meal", async () => {
 
     const input = {
       id: "1",
-      name: "Lucian Tavares",
-      email: "lucian@fc2.com.br"
+      type: "Almoço",
+      dayOfTheWeek: {
+        day: "Segunda-Feira"
+      }
     }
 
-    const userRepository = new UserRepository()
-    const usecase = new UpdateUserUseCase(userRepository)
+    const typeOfMealRepository = new TypeOfMealRepository()
+    const usecase = new UpdateTypeOfMealUseCase(typeOfMealRepository)
+    
+    const typeOfMeal = new TypeOfMeal(input.id, input.type)
+    const dayOfTheWeek = new DayOfTheWeek(input.dayOfTheWeek.day)
+    typeOfMeal.DayOfTheWeek = dayOfTheWeek
+    typeOfMeal.activate()
 
-    const user = new User(input.id, input.name, input.email)
-
-    await userRepository.create(user)
+    await typeOfMealRepository.create(typeOfMeal)
 
     const result = await usecase.execute(input)
 

@@ -1,6 +1,6 @@
 
 import User from "../../../domain/user/entity/user"
-import FindUserUseCase from "./find.usecase"
+import FindUserUseCase from "./find.user.usecase"
 
 const user = new User("1", "Lucian", "lucian@fc.com.br")
 user.activate()

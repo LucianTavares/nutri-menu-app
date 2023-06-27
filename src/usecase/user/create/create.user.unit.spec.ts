@@ -1,4 +1,3 @@
-import User from "../../../domain/user/entity/user"
 import CreateUserUseCase from "./create.user"
 
 const input = {

@@ -21,7 +21,7 @@ export default class CreateUserUseCase {
       email: input.email
     }
 
-    const user = new User(userId, props.name, props.email)
+    const user = new User(props.id, props.name, props.email)
 
     await this.userRepository.create(user)
 
