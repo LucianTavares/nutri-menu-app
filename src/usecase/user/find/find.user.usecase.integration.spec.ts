@@ -5,7 +5,7 @@ import User from "../../../domain/user/entity/user"
 import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequelize/todayMenu.model"
 import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.model"
-import FindUserUseCase from "./find.usecase"
+import FindUserUseCase from "./find.user.usecase"
 
 describe("Integration test find User use case", () => {
 

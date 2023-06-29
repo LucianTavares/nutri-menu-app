@@ -1,5 +1,5 @@
 import UserFactory from "../../../domain/user/factory/user.factory"
-import UpdateUserUseCase from "./update.usecase"
+import UpdateUserUseCase from "./update.user.usecase"
 
 const user = UserFactory.create(
   "lucian",
