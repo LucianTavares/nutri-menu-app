@@ -10,9 +10,9 @@ const typeOfMeal = TypeOfMealFactory.createWithDayOfTheWeek(
 
 const input = {
   id: typeOfMeal.id,
-  type: "Almoço",
+  type: "Café",
   dayOfTheWeek: {
-    day: "Segunda-Feira"
+    day: "Terça-Feira"
   }
 }
 

@@ -13,6 +13,7 @@ const MockRepository = () => {
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
+    findAll: jest.fn(),
   }
 }
 
