@@ -47,7 +47,7 @@ describe("Today Menu repository tests", () => {
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -87,7 +87,7 @@ describe("Today Menu repository tests", () => {
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -173,7 +173,7 @@ describe("Today Menu repository tests", () => {
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -226,7 +226,7 @@ describe("Today Menu repository tests", () => {
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -284,11 +284,11 @@ describe("Today Menu repository tests", () => {
     typeOfMealTwo.DayOfTheWeek = dayOfTheWeekTwo
     typeOfMealTwo.activate()
 
-    const mixtureOne = new Mixtures("1", "Pão")
+    const mixtureOne = new Mixtures({ id: "1", mixture: "Pão" })
     mixtureOne.cannotFreeze()
     mixtureOne.activate()
 
-    const mixtureTwo = new Mixtures("2", "Pão")
+    const mixtureTwo = new Mixtures({ id: "2", mixture: "Pão" })
     mixtureTwo.cannotFreeze()
     mixtureTwo.activate()
 

@@ -3,6 +3,10 @@ import UserRepositoryInterface from "../../../../domain/user/repository/user-rep
 import UserModel from "./user.model";
 
 export default class UserRepository implements UserRepositoryInterface {
+  
+  findAll(): Promise<User[]> {
+    throw new Error("Method not implemented.");
+  }
 
   async create(entity: User): Promise<void> {
     try {

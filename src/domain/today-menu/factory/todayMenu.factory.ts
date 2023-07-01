@@ -25,10 +25,10 @@ export default class TodayMenuFactory {
   public static create(props: TodayMenuFactoryProps): TodayMenuInterface {
 
     const mixture = props.mixtures.map((m) => {
-      return new Mixture(
-        m.id,
-        m.mixture
-      )
+      return new Mixture({
+        id: m.id,
+        mixture: m.mixture
+      })
     })
 
 
