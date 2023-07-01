@@ -25,8 +25,6 @@ describe("Unit test create Mixture use case", () => {
 
     const output = await usecase.execute(input)
 
-    console.log(output)
-
     expect(output).toEqual({
       id: expect.any(String),
       mixture: input.mixture,

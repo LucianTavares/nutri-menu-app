@@ -23,10 +23,11 @@ const MockRepository = () => {
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
+    findAll: jest.fn(),
   }
 }
 
-describe("Unit test for Type Of Meal use case", () => {
+describe("Unit test Type Of Meal use case", () => {
 
   it("should update a type of meal", async () => {
 

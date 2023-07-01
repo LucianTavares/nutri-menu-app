@@ -19,7 +19,9 @@ export default class MixturesRepository implements MixturesRepositoryInterface {
 
     await MixturesModel.update(
       {
-        mixture: entity.mixture
+        mixture: entity.mixture,
+        canFreeze: entity.isFreeze(),
+        active: entity.isActive()
       },
       {
         where: {
