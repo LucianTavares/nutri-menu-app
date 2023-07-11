@@ -42,12 +42,12 @@ describe("Today Menu repository tests", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     await userRepository.create(user)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -82,12 +82,12 @@ describe("Today Menu repository tests", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     await userRepository.create(user)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -168,12 +168,12 @@ describe("Today Menu repository tests", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     await userRepository.create(user)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -221,12 +221,12 @@ describe("Today Menu repository tests", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     await userRepository.create(user)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
 
-    const mixture = new Mixtures("1", "Pão")
+    const mixture = new Mixtures({ id: "1", mixture: "Pão" })
     mixture.cannotFreeze()
     mixture.activate()
 
@@ -274,21 +274,21 @@ describe("Today Menu repository tests", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     await userRepository.create(user)
 
-    const typeOfMealOne = new TypeOfMeal("1", "Café")
+    const typeOfMealOne = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeekOne = new DayOfTheWeek("Segunda-Feira")
     typeOfMealOne.DayOfTheWeek = dayOfTheWeekOne
     typeOfMealOne.activate()
 
-    const typeOfMealTwo = new TypeOfMeal("2", "Almoço")
+    const typeOfMealTwo = new TypeOfMeal({id: "2", type: "Almoço"})
     const dayOfTheWeekTwo = new DayOfTheWeek("Segunda-Feira")
     typeOfMealTwo.DayOfTheWeek = dayOfTheWeekTwo
     typeOfMealTwo.activate()
 
-    const mixtureOne = new Mixtures("1", "Pão")
+    const mixtureOne = new Mixtures({ id: "1", mixture: "Pão" })
     mixtureOne.cannotFreeze()
     mixtureOne.activate()
 
-    const mixtureTwo = new Mixtures("2", "Pão")
+    const mixtureTwo = new Mixtures({ id: "2", mixture: "Pão" })
     mixtureTwo.cannotFreeze()
     mixtureTwo.activate()
 

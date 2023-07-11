@@ -39,7 +39,7 @@ describe("Integration test delete Type Of Meal use case", () => {
 
     jest.spyOn(typeOfMealRepository, "find")
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()

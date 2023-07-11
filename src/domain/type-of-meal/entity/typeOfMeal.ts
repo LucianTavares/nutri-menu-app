@@ -1,17 +1,23 @@
 import DayOfTheWeek from "../../today-menu/entity/value-object/dayOfTheWeek";
 import TypeOfMealInterface from "./typeOfMeal.interface";
 
+type TypeOfMealProps = {
+  id: string
+  type: string
+  active?: boolean
+}
 
 export default class TypeOfMeal implements TypeOfMealInterface {
 
   private _id: string;
   private _type: string;
   private _dayOfTheWeek!: DayOfTheWeek;
-  private _active: boolean = false;
+  private _active: boolean;
 
-  constructor(id: string, type: string) {
-    this._id = id;
-    this._type = type;
+  constructor(props: TypeOfMealProps) {
+    this._id = props.id;
+    this._type = props.type;
+    this._active = props.active || false;
     this.validate();
   }
 

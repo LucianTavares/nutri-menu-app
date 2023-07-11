@@ -25,18 +25,18 @@ export default class TodayMenuFactory {
   public static create(props: TodayMenuFactoryProps): TodayMenuInterface {
 
     const mixture = props.mixtures.map((m) => {
-      return new Mixture(
-        m.id,
-        m.mixture
-      )
+      return new Mixture({
+        id: m.id,
+        mixture: m.mixture
+      })
     })
 
 
     const typeOfMeal = props.typeOfMeal.map((t) => {
-      const type =  new TypeOfMeal(
-        t.id,
-        t.type
-      )
+      const type =  new TypeOfMeal({
+        id: t.id,
+        type: t.type
+      })
       type.changeDay(t.DayOfTheWeek)
       return type
     })
