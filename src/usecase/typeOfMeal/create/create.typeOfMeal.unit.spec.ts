@@ -4,7 +4,8 @@ const input = {
   type: "Almoço",
   dayOfTheWeek: {
     day: "Terça-Feira"
-  }
+  },
+  active: true
 }
 
 const MockRepository = () => {
@@ -32,7 +33,8 @@ describe("Unit test create Type Of Meal use case", () => {
       type: input.type,
       dayOfTheWeek: {
         day: input.dayOfTheWeek.day
-      }
+      },
+      active: input.active,
     })
   })
 

@@ -21,10 +21,11 @@ export default class CreateTypeOfMealUseCase {
       type: input.type,
       dayOfTheWeek: {
         day: input.dayOfTheWeek.day
-      }
+      },
+      active: input.active
     }
 
-    const typeOfMeal = new TypeOfMeal(props.id, props.type)
+    const typeOfMeal = new TypeOfMeal({id: props.id, type: props.type, active: props.active})
     const dayOfTheWeek = new DayOfTheWeek(props.dayOfTheWeek.day)
 
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
@@ -36,7 +37,8 @@ export default class CreateTypeOfMealUseCase {
       type: typeOfMeal.type,
       dayOfTheWeek: {
         day: typeOfMeal.DayOfTheWeek.day
-      }
+      },
+      active: typeOfMeal.isActive()
     }
   }
 }

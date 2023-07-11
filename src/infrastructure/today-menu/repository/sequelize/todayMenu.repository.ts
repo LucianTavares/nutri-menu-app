@@ -105,10 +105,10 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
         id: mixture.id,
         mixture: mixture.mixture
       })),
-      typeOfMeal: todayMenu.type_of_meal.map(type => new TypeOfMeal(
-        type.id,
-        type.type
-      )),
+      typeOfMeal: todayMenu.type_of_meal.map(type => new TypeOfMeal({
+        id: type.id,
+        type: type.type
+      })),
       userId: todayMenu.user_id,
     })
 
@@ -135,10 +135,10 @@ export default class TodayMenuRepository implements TodayMenuRepositoryInterface
           return mixture
         }),
         typeOfMeal: todayMenuModel.type_of_meal.map((t) => {
-          let type = new TypeOfMeal(
-            t.id,
-            t.type
-          )
+          let type = new TypeOfMeal({
+            id: t.id,
+            type: t.type
+          })
           const dayOfTheWeek = new DayOfTheWeek(t.day)
           type.changeDay(dayOfTheWeek)
           if (t.active) {

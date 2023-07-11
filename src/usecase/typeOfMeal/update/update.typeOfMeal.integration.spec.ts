@@ -47,7 +47,7 @@ describe("Integration test update Type Of Meal use case", () => {
     const typeOfMealRepository = new TypeOfMealRepository()
     const usecase = new UpdateTypeOfMealUseCase(typeOfMealRepository)
     
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek(input.dayOfTheWeek.day)
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()

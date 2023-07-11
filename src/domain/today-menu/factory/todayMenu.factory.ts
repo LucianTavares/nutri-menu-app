@@ -33,10 +33,10 @@ export default class TodayMenuFactory {
 
 
     const typeOfMeal = props.typeOfMeal.map((t) => {
-      const type =  new TypeOfMeal(
-        t.id,
-        t.type
-      )
+      const type =  new TypeOfMeal({
+        id: t.id,
+        type: t.type
+      })
       type.changeDay(t.DayOfTheWeek)
       return type
     })

@@ -7,6 +7,7 @@ type TypeOfMeal = {
   dayOfTheWeek: {
     day: string
   }
+  active: boolean
 }
 
 export interface OutputFindAllTypeOfMealUseCaseDto {

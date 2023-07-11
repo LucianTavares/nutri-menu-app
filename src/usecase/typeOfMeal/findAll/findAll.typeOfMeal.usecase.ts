@@ -28,7 +28,8 @@ class OutputMapper {
         type: type.type,
         dayOfTheWeek: {
           day: type.DayOfTheWeek.day
-        }
+        },
+        active: type.isActive()
       }))
     }
   }

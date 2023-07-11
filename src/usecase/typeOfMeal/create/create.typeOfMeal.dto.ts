@@ -2,7 +2,8 @@ export interface InputCreateTypeOfMealUseCaseDto {
   type: string
   dayOfTheWeek: {
     day: string
-  }
+  },
+  active: boolean
 }
 
 export interface OutputCreateTypeOfMealUseCaseDto {
@@ -10,5 +11,6 @@ export interface OutputCreateTypeOfMealUseCaseDto {
   type: string
   dayOfTheWeek: {
     day: string
-  }
+  },
+  active: boolean
 }

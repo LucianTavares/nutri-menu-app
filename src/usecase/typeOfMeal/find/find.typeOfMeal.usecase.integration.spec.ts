@@ -39,7 +39,7 @@ describe("Integration test find Type Of Meal use case", () => {
     const typeOfMealRepository = new TypeOfMealRepository()
     const usecase = new FindTypeOfMealUseCase(typeOfMealRepository)
 
-    const typeOfMeal = new TypeOfMeal("1", "Janta")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Janta"})
     const dayOfTheWeek = new DayOfTheWeek("Quarta-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
@@ -55,7 +55,8 @@ describe("Integration test find Type Of Meal use case", () => {
       type: "Janta",
       dayOfTheWeek: {
         day: "Quarta-Feira"
-      }
+      },
+      active: true
     }
 
     const result = await usecase.execute(input)

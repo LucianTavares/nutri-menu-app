@@ -2,7 +2,7 @@ import DayOfTheWeek from "../../../domain/today-menu/entity/value-object/dayOfTh
 import TypeOfMeal from "../../../domain/type-of-meal/entity/typeOfMeal";
 import FindTypeOfMealUseCase from "./find.typeOfMeal.usecase";
 
-const typeOfMeal = new TypeOfMeal("1", "Almoço")
+const typeOfMeal = new TypeOfMeal({id: "1", type: "Almoço"})
 const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
 typeOfMeal.DayOfTheWeek = dayOfTheWeek
 typeOfMeal.activate()
@@ -33,7 +33,8 @@ describe("Unit test find Type Of Meal use case", () => {
       type: "Almoço",
       dayOfTheWeek: {
         day: "Segunda-Feira"
-      }
+      },
+      active: true
     }
 
     const result = await usecase.execute(input)

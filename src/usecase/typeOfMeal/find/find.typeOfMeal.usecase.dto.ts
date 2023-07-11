@@ -8,4 +8,5 @@ export interface OutputFindTypeOfMealUseCaseDto {
   dayOfTheWeek: {
     day: string
   }
+  active: boolean
 }

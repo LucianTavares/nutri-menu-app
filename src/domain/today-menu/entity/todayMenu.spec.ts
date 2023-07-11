@@ -9,7 +9,7 @@ describe("Today menu unit tests", () => {
     expect(() => {
       const user = new User("1", "Lucian", "lucian@fc.com.br")
       let mixture = new Mixtures({id: "1", mixture: "Pão"})
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
     }).toThrowError("Id is required")
   })
@@ -17,7 +17,7 @@ describe("Today menu unit tests", () => {
   it("should throw error when mixture is empty", () => {
     expect(() => {
       const user = new User("1", "Lucian", "lucian@fc.com.br")
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "1", mixtures: [], typeOfMeal: [typeOfMeal], userId: user.id})
     }).toThrowError("Mixture is required")
   })
@@ -33,7 +33,7 @@ describe("Today menu unit tests", () => {
   it("should throw error when user id is empty", () => {
     expect(() => {
       let mixture = new Mixtures({id: "1", mixture: "Pão"})
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: ""})
     }).toThrowError("User Id is required")
   })
@@ -41,7 +41,7 @@ describe("Today menu unit tests", () => {
   it("should change to frozen", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     const mixture = new Mixtures({id: "1", mixture: "Pão"})
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
     menu.freeze()
 
@@ -51,7 +51,7 @@ describe("Today menu unit tests", () => {
   it("should change to not frozen", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     const mixture = new Mixtures({id: "1", mixture: "Pão"})
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
     menu.unfreeze()
 
@@ -61,7 +61,7 @@ describe("Today menu unit tests", () => {
   it("should activate today menu", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     const mixture = new Mixtures({id: "1", mixture: "Pão"})
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
     menu.activate()
 
@@ -71,7 +71,7 @@ describe("Today menu unit tests", () => {
   it("should deactivate today menu", () => {
     const user = new User("1", "Lucian", "lucian@fc.com.br")
     const mixture = new Mixtures({id: "1", mixture: "Pão"})
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
     menu.deactivate()
 
@@ -82,7 +82,7 @@ describe("Today menu unit tests", () => {
     expect(() => {
       const user = new User("1", "Lucian", "lucian@fc.com.br")
       const mixture = new Mixtures({id: "1", mixture: "Pão"})
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: user.id})
       menu.activate()
     }).toThrowError("Id is required")
@@ -91,7 +91,7 @@ describe("Today menu unit tests", () => {
   it("should throw error when try activate menu when mixture is empty", () => {
     expect(() => {
       const user = new User("1", "Lucian", "lucian@fc.com.br")
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "1", mixtures: [], typeOfMeal: [typeOfMeal], userId: user.id})
       menu.activate()
     }).toThrowError("Mixture is required")
@@ -111,7 +111,7 @@ describe("Today menu unit tests", () => {
 
       const user = new User("1", "Lucian", "lucian@fc.com.br")
       const mixture = new Mixtures({id: "1", mixture: "Pão"})
-      const typeOfMeal = new TypeOfMeal("1", "Café")
+      const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
       let menu = new TodayMenu({id: "1", mixtures: [mixture], typeOfMeal: [typeOfMeal], userId: ""})
       menu.activate()
     }).toThrowError("User Id is required")

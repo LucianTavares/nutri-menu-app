@@ -56,8 +56,6 @@ describe("Integration test update Mixture use case", () => {
 
     const result = await usecase.execute(input)
 
-    console.log(result)
-
     expect(result).toEqual(input)
   })
 })
