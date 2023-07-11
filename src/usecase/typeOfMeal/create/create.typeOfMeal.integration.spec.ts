@@ -33,7 +33,7 @@ describe("Integration test create Type Of Meal use case", () => {
     const typeOfMealRepository = new TypeOfMealRepository()
     const usecase = new CreateTypeOfMealUseCase(typeOfMealRepository)
 
-    const typeOfMeal = new TypeOfMeal("1", "Café")
+    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
     const dayOfTheWeek = new DayOfTheWeek("Segunda-Feira")
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
     typeOfMeal.activate()
@@ -44,7 +44,8 @@ describe("Integration test create Type Of Meal use case", () => {
       type: "Café",
       dayOfTheWeek: {
         day: "Segunda-Feira"
-      }
+      },
+      active: true
     }
 
     const output = {
@@ -52,7 +53,8 @@ describe("Integration test create Type Of Meal use case", () => {
       type: "Café",
       dayOfTheWeek: {
         day: "Segunda-Feira"
-      }
+      },
+      active: true
     }
 
     const result = await usecase.execute(input)

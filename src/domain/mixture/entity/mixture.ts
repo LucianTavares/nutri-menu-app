@@ -1,16 +1,25 @@
 import MixtureInterface from "./mixture.interface";
 
+type MixtureProps = {
+  id: string
+  mixture: string
+  canFreeze?: boolean;
+  active?: boolean;
+}
+
 export default class Mixture implements MixtureInterface {
 
   private _id: string;
   private _mixture: string;
-  private _canFreeze: boolean = false;
-  private _active: boolean = false;
+  private _canFreeze: boolean;
+  private _active: boolean;
 
-  constructor(id: string, mixture: string) {
+  constructor(props: MixtureProps) {
 
-    this._id = id;
-    this._mixture = mixture;
+    this._id = props.id;
+    this._mixture = props.mixture;
+    this._canFreeze = props.canFreeze || false;
+    this._active = props.active || false;
     this.validate();
   }
 

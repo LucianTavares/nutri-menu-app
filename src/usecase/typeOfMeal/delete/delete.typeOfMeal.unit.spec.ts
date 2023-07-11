@@ -18,7 +18,8 @@ const inputTypeOfMeal = {
   type: "Café",
   dayOfTheWeek: {
     day: "Terça-Feira"
-  }
+  },
+  active: true
 }
 
 const MockRepository = () => {
@@ -27,6 +28,7 @@ const MockRepository = () => {
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn().mockResolvedValue(null),
+    findAll: jest.fn()
   }
 }
 

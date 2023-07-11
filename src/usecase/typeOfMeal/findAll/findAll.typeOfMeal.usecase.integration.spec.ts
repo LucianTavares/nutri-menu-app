@@ -55,15 +55,14 @@ describe("Integration test findAll Type Of Meal use case", () => {
       }
     } 
 
-    const typeOfMealOne = new TypeOfMeal(inputOne.id, inputOne.type)
+    const typeOfMealOne = new TypeOfMeal({id: inputOne.id, type: inputOne.type})
     const dayOfTheWeekOne = new DayOfTheWeek(inputOne.dayOfTheWeek.day)
     typeOfMealOne.DayOfTheWeek = dayOfTheWeekOne
     typeOfMealOne.activate()
 
-    const typeOfMealTwo = new TypeOfMeal(inputTwo.id, inputTwo.type)
+    const typeOfMealTwo = new TypeOfMeal({id: inputTwo.id, type: inputTwo.type})
     const dayOfTheWeekTwo = new DayOfTheWeek(inputTwo.dayOfTheWeek.day)
     typeOfMealTwo.DayOfTheWeek = dayOfTheWeekTwo
-    typeOfMealTwo.activate()
 
     await typeOfMealRepository.create(typeOfMealOne)
     await typeOfMealRepository.create(typeOfMealTwo)
@@ -75,9 +74,11 @@ describe("Integration test findAll Type Of Meal use case", () => {
     expect(output.typesOfMeal[0].id).toBe(typeOfMealOne.id)
     expect(output.typesOfMeal[0].type).toBe(typeOfMealOne.type)
     expect(output.typesOfMeal[0].dayOfTheWeek.day).toBe(typeOfMealOne.DayOfTheWeek.day)
+    expect(output.typesOfMeal[0].active).toBe(typeOfMealOne.isActive())
 
     expect(output.typesOfMeal[1].id).toBe(typeOfMealTwo.id)
     expect(output.typesOfMeal[1].type).toBe(typeOfMealTwo.type)
     expect(output.typesOfMeal[1].dayOfTheWeek.day).toBe(typeOfMealTwo.DayOfTheWeek.day)
+    expect(output.typesOfMeal[1].active).toBe(typeOfMealTwo.isActive())
   })
 })

@@ -7,8 +7,9 @@ const dayOfTheWeekTwo = new DayOfTheWeek("Terça-Feira")
 
 const typeOfMealOne = TypeOfMealFactory.createWithDayOfTheWeek(
   "Café",
-  dayOfTheWeekOne
-)
+  dayOfTheWeekOne,
+  )
+  typeOfMealOne.activate()
 
 const typeOfMealTwo = TypeOfMealFactory.createWithDayOfTheWeek(
   "Almoço",
@@ -39,9 +40,11 @@ describe("Unit test find all Type Of Meal use case", () => {
     expect(output.typesOfMeal[0].id).toBe(typeOfMealOne.id)
     expect(output.typesOfMeal[0].type).toBe(typeOfMealOne.type)
     expect(output.typesOfMeal[0].dayOfTheWeek.day).toBe(typeOfMealOne.DayOfTheWeek.day)
+    expect(output.typesOfMeal[0].active).toBe(typeOfMealOne.isActive())
 
     expect(output.typesOfMeal[1].id).toBe(typeOfMealTwo.id)
     expect(output.typesOfMeal[1].type).toBe(typeOfMealTwo.type)
     expect(output.typesOfMeal[1].dayOfTheWeek.day).toBe(typeOfMealTwo.DayOfTheWeek.day)
+    expect(output.typesOfMeal[1].active).toBe(typeOfMealTwo.isActive())
   })
 })

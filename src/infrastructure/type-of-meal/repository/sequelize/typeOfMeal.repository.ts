@@ -48,14 +48,15 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
           where: { id: id }
         }
       )
-    }catch (err) {
+    } catch (err) {
       throw new Error("Type Of Meal not found")
     }
 
-    const type = new TypeOfMeal(
-      typeOfMeal.id,
-      typeOfMeal.type
-    )
+    const type = new TypeOfMeal({
+      id: typeOfMeal.id,
+      type: typeOfMeal.type,
+      active: typeOfMeal.active
+    })
     const dayOfTheWeek = new DayOfTheWeek(typeOfMeal.day)
     type.DayOfTheWeek = dayOfTheWeek
 
@@ -71,14 +72,15 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
           where: { type: type }
         }
       )
-    }catch (err) {
+    } catch (err) {
       throw new Error("Type Of Meal not found")
     }
 
-    const typeOfMeal = new TypeOfMeal(
-      typeOfMealFind.id,
-      typeOfMealFind.type
-    )
+    const typeOfMeal = new TypeOfMeal({
+      id: typeOfMealFind.id,
+      type: typeOfMealFind.type,
+      active: typeOfMealFind.active
+    })
     const dayOfTheWeek = new DayOfTheWeek(typeOfMeal.DayOfTheWeek.day)
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
 
@@ -90,7 +92,11 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
     const typesOfMealModels = await TypeOfMealModel.findAll()
 
     const typesOfMeal = typesOfMealModels.map((typeOfMealModel) => {
-      let types = new TypeOfMeal(typeOfMealModel.id, typeOfMealModel.type)
+      let types = new TypeOfMeal({
+        id: typeOfMealModel.id,
+        type: typeOfMealModel.type,
+        active: typeOfMealModel.active
+      })
       const dayOfTheWeek = new DayOfTheWeek(typeOfMealModel.day)
       types.changeDay(dayOfTheWeek)
       if (typeOfMealModel.active) {

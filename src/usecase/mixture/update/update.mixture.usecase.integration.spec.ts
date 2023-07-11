@@ -3,12 +3,11 @@ import UserModel from "../../../infrastructure/user/repository/sequelize/user.mo
 import TodayMenuModel from "../../../infrastructure/today-menu/repository/sequelize/todayMenu.model"
 import MixturesModel from "../../../infrastructure/mixture/repository/sequelize/mixtures.model"
 import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.model"
-import TypeOfMealRepository from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.repository"
-import TypeOfMeal from "../../../domain/type-of-meal/entity/typeOfMeal"
-import DayOfTheWeek from "../../../domain/today-menu/entity/value-object/dayOfTheWeek"
-import UpdateTypeOfMealUseCase from "./update.typeOfMeal.usecase"
+import MixturesRepository from "../../../infrastructure/mixture/repository/sequelize/mixture.repository"
+import Mixture from "../../../domain/mixture/entity/mixture"
+import UpdateMixtureUseCase from "./update.mixture.usecase"
 
-describe("Integration test update Type Of Meal use case", () => {
+describe("Integration test update Mixture use case", () => {
 
   let sequelize: Sequelize
 
@@ -34,25 +33,26 @@ describe("Integration test update Type Of Meal use case", () => {
     await sequelize.close()
   })
 
-  it("should update a type of meal", async () => {
+  it("should update a mixture", async () => {
 
-    const input = {
+    const input =  {
       id: "1",
-      type: "Almoço",
-      dayOfTheWeek: {
-        day: "Segunda-Feira"
-      }
+      mixture: "Frango",
+      canFreeze: true,
+      active: false
     }
 
-    const typeOfMealRepository = new TypeOfMealRepository()
-    const usecase = new UpdateTypeOfMealUseCase(typeOfMealRepository)
-    
-    const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
-    const dayOfTheWeek = new DayOfTheWeek(input.dayOfTheWeek.day)
-    typeOfMeal.DayOfTheWeek = dayOfTheWeek
-    typeOfMeal.activate()
+    const mixtureRepository = new MixturesRepository()
+    const usecase = new UpdateMixtureUseCase(mixtureRepository)
 
-    await typeOfMealRepository.create(typeOfMeal)
+    const mixture = new Mixture({
+      id: "1", 
+      mixture: "Carne", 
+      canFreeze: true,
+      active: true
+    })
+
+    await mixtureRepository.create(mixture)
 
     const result = await usecase.execute(input)
 

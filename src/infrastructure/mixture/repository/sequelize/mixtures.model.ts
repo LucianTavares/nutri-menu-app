@@ -21,7 +21,7 @@ export default class MixturesModel extends Model {
   declare active: boolean
 
   @ForeignKey(() => TodayMenuModel)
-  @Column({ allowNull: false })
+  @Column({ allowNull: true })
   declare today_menu_id: string
 
   @BelongsTo(() => TodayMenuModel, {

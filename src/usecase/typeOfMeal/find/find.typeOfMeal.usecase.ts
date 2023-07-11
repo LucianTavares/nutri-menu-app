@@ -18,7 +18,8 @@ export default class FindTypeOfMealUseCase {
       type: typeOfMeal.type,
       dayOfTheWeek: {
         day: typeOfMeal.DayOfTheWeek.day
-      }
+      },
+      active: typeOfMeal.isActive()
     }
   }
 }
