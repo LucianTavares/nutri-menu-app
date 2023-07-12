@@ -81,7 +81,8 @@ export default class TypeOfMealRepository implements TypeOfMealRepositoryInterfa
       type: typeOfMealFind.type,
       active: typeOfMealFind.active
     })
-    const dayOfTheWeek = new DayOfTheWeek(typeOfMeal.DayOfTheWeek.day)
+
+    const dayOfTheWeek = new DayOfTheWeek(typeOfMealFind.day)
     typeOfMeal.DayOfTheWeek = dayOfTheWeek
 
     return typeOfMeal

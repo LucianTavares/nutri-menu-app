@@ -6,9 +6,9 @@ import TypeOfMealModel from "../../../infrastructure/type-of-meal/repository/seq
 import TypeOfMealRepository from "../../../infrastructure/type-of-meal/repository/sequelize/typeOfMeal.repository"
 import TypeOfMeal from "../../../domain/type-of-meal/entity/typeOfMeal"
 import DayOfTheWeek from "../../../domain/today-menu/entity/value-object/dayOfTheWeek"
-import FindTypeOfMealUseCase from "./find.typeOfMeal.usecase"
+import FindTypeOfMealUseCase from "./findByType.typeOfMeal.usecase"
 
-describe("Integration test find Type Of Meal use case", () => {
+describe("Integration test find by type Type Of Meal use case", () => {
 
   let sequelize: Sequelize
 
@@ -34,7 +34,7 @@ describe("Integration test find Type Of Meal use case", () => {
     await sequelize.close()
   })
 
-  it("should find a type of meal by id", async () => {
+  it("should find a type of meal by type", async () => {
 
     const typeOfMealRepository = new TypeOfMealRepository()
     const usecase = new FindTypeOfMealUseCase(typeOfMealRepository)
@@ -47,7 +47,7 @@ describe("Integration test find Type Of Meal use case", () => {
     await typeOfMealRepository.create(typeOfMeal)
 
     const input = {
-      id: "1"
+      type: "Janta"
     }
 
     const output = {
@@ -59,7 +59,7 @@ describe("Integration test find Type Of Meal use case", () => {
       active: true
     }
 
-    const result = await usecase.execute(input)
+    const result = await usecase.findByType(input)
 
     expect(result).toEqual(output)
   })
