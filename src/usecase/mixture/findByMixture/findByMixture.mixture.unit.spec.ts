@@ -1,5 +1,5 @@
 import Mixture from "../../../domain/mixture/entity/mixture";
-import FindMixtureUseCase from "./find.mixture.usecase";
+import FindByMixtureUseCase from "./findByMixture.mixture.usecase";
 
 const mixture = new Mixture({
   id: "1",
@@ -10,24 +10,24 @@ const mixture = new Mixture({
 
 const MockRepository = () => {
   return {
-    find: jest.fn().mockReturnValue(Promise.resolve(mixture)),
+    find: jest.fn(),
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
     findAll: jest.fn(),
-    findByMixture: jest.fn(),
+    findByMixture: jest.fn().mockReturnValue(Promise.resolve(mixture)),
   }
 }
 
 describe("Unit test mixture use case", () => {
 
-  it("should find a mixture by id", async () => {
+  it("should find a mixture by mixture", async () => {
 
     const mixtureRepository = MockRepository()
-    const usecase = new FindMixtureUseCase(mixtureRepository)
+    const usecase = new FindByMixtureUseCase(mixtureRepository)
 
     const input = {
-      id: "1",
+      mixture: "Frango",
     }
 
     const output = {
@@ -45,14 +45,14 @@ describe("Unit test mixture use case", () => {
   it("should not find a mixture", async () => {
 
     const mixtureRepository = MockRepository()
-    mixtureRepository.find.mockImplementation(() => {
+    mixtureRepository.findByMixture.mockImplementation(() => {
       throw new Error("Mixture not found")
     })
 
-    const usecase = new FindMixtureUseCase(mixtureRepository)
+    const usecase = new FindByMixtureUseCase(mixtureRepository)
 
     const input = {
-      id: "1"
+      mixture: "Arroz"
     }
 
     expect(() => {

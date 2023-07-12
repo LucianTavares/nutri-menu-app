@@ -65,15 +65,22 @@ export default class MixturesRepository implements MixturesRepositoryInterface {
 
   async findByMixture(mixture: string): Promise<Mixture> {
 
-    const mixtureModel = await MixturesModel.findOne(
-      {
-        where: { mixture: mixture }
-      }
-    )
+    let mixtureModel
+    try {
+      mixtureModel = await MixturesModel.findOne(
+        {
+          where: { mixture: mixture }
+        }
+      )
+    } catch (err) {
+      throw new Error("Mixture not found")
+    }
 
     return new Mixture({
       id: mixtureModel.id,
-      mixture: mixtureModel.mixture
+      mixture: mixtureModel.mixture,
+      canFreeze: mixtureModel.can_freeze,
+      active: mixtureModel.active
     })
   }
 
