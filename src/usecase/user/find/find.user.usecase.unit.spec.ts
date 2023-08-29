@@ -2,7 +2,7 @@
 import User from "../../../domain/user/entity/user"
 import FindUserUseCase from "./find.user.usecase"
 
-const user = new User("1", "Lucian", "lucian@fc.com.br")
+const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
 user.activate()
 
 const MockRepository = () => {
@@ -11,6 +11,7 @@ const MockRepository = () => {
     create: jest.fn(),
     update: jest.fn(),
     delete: jest.fn(),
+    findAll: jest.fn(),
   }
 }
 

@@ -58,11 +58,11 @@ export default class UserRepository implements UserRepositoryInterface {
       throw new Error("User not found")
     }
 
-    const user = new User(
-      userModel.id,
-      userModel.name,
-      userModel.email
-    )
+    const user = new User({
+      id: userModel.id,
+      name: userModel.name,
+      email: userModel.email
+    })
 
     return user
   }

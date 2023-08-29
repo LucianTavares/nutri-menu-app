@@ -34,7 +34,7 @@ describe("User repository tests", () => {
   it("should create a user", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({ id: "1", name: "Lucian", email: "lucian@fc.com.br" })
     user.activate()
 
     await userRepository.create(user)
@@ -52,7 +52,7 @@ describe("User repository tests", () => {
   it("should update a user", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({ id: "1", name: "Lucian", email: "lucian@fc.com.br" })
     user.activate()
 
     await userRepository.create(user)
@@ -74,7 +74,7 @@ describe("User repository tests", () => {
   it("should delete a user", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({ id: "1", name: "Lucian", email: "lucian@fc.com.br" })
     user.activate()
 
     await userRepository.create(user)
@@ -96,13 +96,13 @@ describe("User repository tests", () => {
   it("should find a user", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({ id: "1", name: "Lucian", email: "lucian@fc.com.br" })
     user.activate()
 
     await userRepository.create(user)
 
     const userModel = await UserModel.findOne({
-      where: { id: user.id,}
+      where: { id: user.id, }
     })
 
     const foundUser = await userRepository.find(user.id)

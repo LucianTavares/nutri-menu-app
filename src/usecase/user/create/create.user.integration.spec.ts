@@ -32,7 +32,7 @@ describe("Integration test create User use case", () => {
     const userRepository = new UserRepository()
     const usecase = new CreateUserUseCase(userRepository)
 
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id:"1", name:"Lucian", email:"lucian@fc.com.br"})
 
     await userRepository.create(user)
 

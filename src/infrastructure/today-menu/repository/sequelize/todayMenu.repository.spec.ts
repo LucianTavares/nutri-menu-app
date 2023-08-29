@@ -39,7 +39,7 @@ describe("Today Menu repository tests", () => {
   it("should create a today menu", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
     await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
@@ -79,7 +79,7 @@ describe("Today Menu repository tests", () => {
   it("should update a today menu", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
     await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
@@ -165,7 +165,7 @@ describe("Today Menu repository tests", () => {
   it("should delete a today menu", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
     await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
@@ -218,7 +218,7 @@ describe("Today Menu repository tests", () => {
   it("should find a today menu", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
     await userRepository.create(user)
 
     const typeOfMeal = new TypeOfMeal({id: "1", type: "Café"})
@@ -271,7 +271,7 @@ describe("Today Menu repository tests", () => {
   it("should find all Menu", async () => {
 
     const userRepository = new UserRepository()
-    const user = new User("1", "Lucian", "lucian@fc.com.br")
+    const user = new User({id: "1", name: "Lucian", email: "lucian@fc.com.br"})
     await userRepository.create(user)
 
     const typeOfMealOne = new TypeOfMeal({id: "1", type: "Café"})

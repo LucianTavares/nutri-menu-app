@@ -1,6 +1,11 @@
 import TodayMenu from "../../today-menu/entity/todayMenu";
 import UserInterface from "./user.interface";
 
+export type UserProps = {
+  id: string
+  name: string
+  email: string
+}
 
 export default class User implements UserInterface {
 
@@ -10,10 +15,10 @@ export default class User implements UserInterface {
   private _todayMenu: TodayMenu[];
   private _active: boolean = false;
 
-  constructor(id: string, name: string, email: string) {
-    this._id = id;
-    this._name = name;
-    this._email = email;
+  constructor(props: UserProps) {
+    this._id = props.id;
+    this._name = props.name;
+    this._email = props.email;
     this.validate();
   }
 

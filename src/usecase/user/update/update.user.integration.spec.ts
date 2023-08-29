@@ -44,7 +44,7 @@ describe("Integration test update User use case", () => {
     const userRepository = new UserRepository()
     const usecase = new UpdateUserUseCase(userRepository)
 
-    const user = new User(input.id, input.name, input.email)
+    const user = new User({id: input.id, name: input.name, email: input.email})
 
     await userRepository.create(user)
 
